@@ -1,5 +1,3 @@
----
-
 # 🚀 AIrticle: "Crafting Newsletters with AI Precision"
 
 AIrticle is an innovative web application designed to harness the capabilities of GPT-4 for generating high-quality newsletters based on user-defined topics or prompts. Crafted for those who value precision and efficiency, AIrticle is ready to revolutionize the way you create newsletters.
@@ -99,5 +97,3 @@ AIrticle PRO offers enhanced capabilities, more templates, and premium support t
 ---
 
 AIrticle is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**. Open-source project crafted with ❤️ by [Jason Quist](https://github.com/Jasiel-Stark8/).
-
----
