@@ -6,8 +6,7 @@ AIrticle is an innovative web application designed to harness the capabilities o
 - 👉 **Demo**: (Link to live demo will be available in a few weeks)
 - 👉 Free **Support** via:
 - 📧 [Email - nftsingularity8@gmail.com](mailto:nftsingularity8@gmail.com)
-- 📱 [Telegram](https://t.me/Json_format) - ![Telegram Icon](https://i.pinimg.com/564x/16/73/42/16734207ac6a466dbe91f1727097fc04.jpg)
-
+- 📱 [Telegram](https://t.me/Json_format)
 
 <br />
 
