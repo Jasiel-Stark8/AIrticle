@@ -10,10 +10,10 @@ AIrticle is an innovative web application designed to harness the capabilities o
 
 <br />
 
-> 🚀 Built with cutting-edge technologies, Timestamp: `2023-10-03`
+> 🚀 Built with cutting-edge technologies, Timestamp: `2023-10-10`
 
 - ✅ `Up-to-date dependencies`
-- ✅ `Database`: `SQLite`
+- ✅ `Database`: `PostgreSQL`
 - ✅ `DB Tools`: SQLAlchemy ORM
 - ✅ Deployment on `Heroku`
 - ✅ Automated testing with `Selenium`
