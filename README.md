@@ -10,11 +10,10 @@ AIrticle is an innovative web application designed to harness the capabilities o
 
 <br />
 
-> 🚀 Built with cutting-edge technologies, Timestamp: `2023-10-03`
+> 🚀 Built with cutting-edge technologies, Timestamp: `2023-10-10`
 
 - ✅ `Up-to-date dependencies`
-- ✅ `Database`: `SQLite`
-- ✅ `DB Tools`: SQLAlchemy ORM
+- ✅ `Database`: `PostgreSQL`
 - ✅ Deployment on `Heroku`
 - ✅ Automated testing with `Selenium`
   
@@ -53,9 +52,9 @@ Visit `http://localhost:5000` in your browser. The app should be up & running.
 
 - **AI-Powered Content Generation**: Utilizes GPT-4 to produce newsletters tailored to user input.
 - **Intuitive User Interface**: Designed for ease of use, ensuring a seamless user experience.
-- **Feedback Mechanism**: Allows users to rate the generated content, aiding in continuous improvement.
-- **Authentication**: OpenAI Key will be needed for this app to run locally
-        **Provisions**: A commercialized version of this app will be available to those that don't have API keys
+- **Export Options**: Allows users to export their articles in various formats (DOC, DOCX, PDF, TXT).
+- **Authentication**: OpenAI Key will be needed for this app to run locally.
+        **Provisions**: A commercialized version of this app will be available to those that don't have API keys.
 
 <br />
 
@@ -99,3 +98,5 @@ AIrticle PRO offers enhanced capabilities, more templates, and premium support t
 ---
 
 AIrticle is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**. Open-source project crafted with ❤️ by [Jason Quist](https://github.com/Jasiel-Stark8/).
+
+---
