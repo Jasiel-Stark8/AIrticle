@@ -1,0 +1,28 @@
+participant User
+participant Frontend
+participant Backend
+participant EmailService
+participant Database
+participant OpenAIAPI
+
+User -> Frontend: Access Homepage
+Frontend -> User: Display SignUp/Login options
+User -> Frontend: Choose SignUp
+Frontend -> Backend: Initiate SignUp
+Backend -> EmailService: SendVerificationEmail()
+EmailService -> User: Verification Email
+User -> EmailService: Verify Email
+EmailService -> Backend: ConfirmVerification()
+Backend -> Database: StoreUserData()
+Backend -> Frontend: Show Dashboard
+User -> Frontend: Select "Create New Article"
+Frontend -> Backend: CreateNewArticleRequest()
+Backend -> User: Request Topic/Keywords
+User -> Backend: Provide Topic/Keywords
+Backend -> OpenAIAPI: GenerateContent()
+OpenAIAPI -> Backend: Return GeneratedContent
+Backend -> Frontend: Display Editable Content
+Frontend -> User: Show Edit Options
+User -> Frontend: Edit and Save
+Frontend -> Backend: SaveChanges()
+Backend -> Database: UpdateArticle()

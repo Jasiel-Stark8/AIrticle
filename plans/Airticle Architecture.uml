@@ -1,0 +1,14 @@
+User accesses homepage and is presented with two options: "Log In" and "Sign Up."
+User selects "Sign Up," triggering a redirection to an email and password input form.
+Upon form submission, a verification email is dispatched to the provided email address.
+User activates account by clicking the verification link within the email.
+System redirects user to the dashboard interface.
+Dashboard displays option to "Create New Article."
+User selects "Create New Article," prompting a keyword or topic input text box.
+User submits topic or keywords and activates the "Generate" function.
+Backend initiates API call to OpenAI GPT-4 for content generation.
+Generated content is rendered within an editable text interface.
+Auto-save functionality activates at one-minute intervals, storing user progress within PostgreSQL database.
+User selects "Save," finalizing the article.
+Finalized article is stored within the user's dashboard.
+System provides option to initiate a new content generation request or log out of the platform.
