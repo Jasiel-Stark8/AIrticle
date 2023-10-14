@@ -111,7 +111,7 @@ AIrticle PRO offers enhanced capabilities, more templates, and premium support t
 
 <br >
 
-![AIrticle PRO - Enhanced capabilities and features.](https://github.com/Jasiel-Stark8/AIrticle/blob/main/root%20assets%20&%20misc/AIrticle.png?raw=true) -- COMING SOON
+![AIrticle PRO - Enhanced capabilities and features.](https://github.com/Jasiel-Stark8/AIrticle/blob/main/root%20assets%20&%20misc/AIrticle.png?raw=true)
 
 <br />
 
