@@ -19,7 +19,7 @@ AIrticle is an innovative web application designed to harness the capabilities o
   
 <br />
 
-![AIrticle - AI-Powered Newsletter Generator.](https://github.com/Jasiel-Stark8/AIrticle/blob/main/AIrticle.png)
+![AIrticle - AI-Powered Newsletter Generator.]()
 
 <br />
 
@@ -91,7 +91,7 @@ AIrticle PRO offers enhanced capabilities, more templates, and premium support t
 
 <br >
 
-![AIrticle PRO - Enhanced capabilities and features.](Link-to-your-pro-image-if-available) -- COMING SOON
+![AIrticle PRO - Enhanced capabilities and features.]([Link-to-your-pro-image-if-available](https://github.com/Jasiel-Stark8/AIrticle/blob/main/AIrticle.png)) -- COMING SOON
 
 <br />
 
