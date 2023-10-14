@@ -63,19 +63,39 @@ Visit `http://localhost:5000` in your browser. The app should be up & running.
 The project follows a modular structure, ensuring easy scalability and maintainability: -- COMING SOON
 
 ```bash
-< PROJECT ROOT >
-   |
-   |-- apps/
-   |    |-- home/                           # Home app serving the main interface
-   |    |-- authentication/                 # Handles user authentication and registration
-   |    |-- static/                         # Static files like CSS, JS, images
-   |    |-- templates/                      # HTML templates
-   |
-   |-- config.py                            # Configuration file
-   |-- run.py                               # App entry point
-   |-- requirements.txt                     # App dependencies
-   |-- .env                                 # Environment variables
-   |-- ************************************************************************
+📂 AIrticle/
+│
+├── 📂 templates/
+│   ├── 📄 landing.html            # Landing page of the application
+│   ├── 📄 login.html             # User login form
+│   ├── 📄 register.html          # New user registration form
+│   └── 📄 dashboard.html         # Main dashboard for users to manage their articles
+│
+├── 📂 static/
+│   ├── 📂 css/
+│   │   └── 📄 style.css           # Global styles for the application
+│   ├── 📂 js/
+│   │   ├── 📄 scripts.js          # General scripts used across different pages
+│   │   └── 📄 dashboard.js        # Scripts specific to dashboard functionalities
+│   └── 📂 images/                # Holds image assets used in the application
+│
+├── 📂 models/
+│   ├── 📄 user.py                # Defines User model and related functions
+│   ├── 📄 article.py             # Defines Article model and related functions
+│   └── 📄 autosave.py            # Defines Autosave model and related functionality
+│
+├── 📂 api/
+│   ├── 📂 v1/
+│   │   ├── 📄 auth.py                # Handles authentication routes (login, register)
+│   │   └── 📄 articles.py            # Routes related to dashboard functionalities and articles
+│   │   └── 📄 autosave.py            # Routes related to autosave functionalities
+│
+├── 📄 app.py                    # Main application initialization and configuration
+├── 📄 config.py                 # Configuration settings for the application
+├── 📄 requirements.txt          # Required Python packages for the project
+├── 📄 README.md                 # Project documentation and setup guide
+├── 📄 .env                      # Environment variables (keep private!)
+└── 📄 .gitignore                # List of files/folders to ignore in version control
 ```
 
 <br />
