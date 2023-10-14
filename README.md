@@ -18,7 +18,7 @@ AIrticle is an innovative web application designed to harness the capabilities o
 - ✅ Automated testing with `Selenium`
   
 <br />
-
+Screenshots:
 ![AIrticle - AI-Powered Newsletter Generator.]()
 
 <br />
