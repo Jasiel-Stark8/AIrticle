@@ -60,7 +60,7 @@ Visit `http://localhost:5000` in your browser. The app should be up & running.
 
 ## ✨ Code-base structure
 
-The project follows a modular structure, ensuring easy scalability and maintainability: -- COMING SOON
+The project follows a modular structure, ensuring easy scalability and maintainability:
 
 ```bash
 📂 AIrticle/
