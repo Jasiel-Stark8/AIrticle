@@ -24,7 +24,7 @@ AIrticle is an innovative web application designed to harness the capabilities o
 ## ✨ Getting Started
 
 > **System Dependencies**
-- Python 3.12.0
+- Python 3.11.5
 - PostgreSQL 16.0
 
 > **Step 1** - Clone the repository
