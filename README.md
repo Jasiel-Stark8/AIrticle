@@ -98,6 +98,67 @@ A commercialized version of this app will be available, allowing users without a
 └── 📄 .gitignore                # List of files/folders to ignore in version control
 ```
 
+## 🛠️ Technologies
+
+- **Languages**: 
+  - Python (Primary backend language)
+  - JavaScript (Frontend scripting)
+  - HTML (Webpage structure)
+  - CSS (Styling)
+  
+- **Frameworks**: 
+  - Flask (Backend server handling)
+  - Bootstrap (Responsive frontend styling)
+  
+- **API**: 
+  - OpenAI GPT-4 (Content generation)
+  
+- **Database**: 
+  - PostgreSQL (Reliable storage solution)
+  
+- **Deployment**: 
+  - Docker (Containerization solution for reproducible builds)
+  - Vercel (For front-end deployment and serverless functions)
+  
+- **Version Control**: 
+  - Git (Codebase version tracking)
+  - GitHub (Code repository and collaboration)
+
+---
+
+---
+## 📖 User Guide
+
+### **1. Sign Up/Log In**:
+- **Description**: Our platform offers simple email and password-based authentication. New users can quickly create an account, and returning users can seamlessly log in.
+- **Steps**:
+  - **Sign Up**: Navigate to the sign-up page. Enter your email and create a password. Submit the form to register.
+  - **Log In**: Navigate to the log-in page. Enter your registered email and password. Submit the form to access the dashboard.
+
+### **2. Dashboard**:
+- **Description**: The user dashboard is a centralized area where users can access saved articles and initiate new content generation requests.
+- **Steps**: 
+  - Once logged in, the dashboard is the primary view. Here, you can see a list of your saved articles.
+  - Click on an article title to view, edit, or export the article.
+  - Use the "Generate New Content" button to start the content generation process.
+
+### **3. Content Generation**:
+- **Description**: Input topics or keywords to receive AI-generated content. You have the option to edit the content directly on the platform.
+- **Steps**: 
+  - From the dashboard, click on "Generate New Content."
+  - Input your topic or keywords in the provided field.
+  - Click "Generate" to receive AI-produced content.
+  - You can now edit the content as you see fit, with changes being automatically saved.
+
+### **4. Export**:
+- **Description**: After finalizing the content, users have the option to save their articles in multiple formats including DOC, DOCX, PDF, and TXT.
+- **Steps**: 
+  - Navigate to the article you wish to export.
+  - Choose the desired format from the "Export As" dropdown.
+  - Click the "Export" button. Your article will be downloaded in the selected format.
+
+---
+
 ## 🎉 AIrticle PRO (COMING SOON)
 
 > For more features and priority support, consider upgrading to our PRO version.
