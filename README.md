@@ -14,7 +14,7 @@ AIrticle is an innovative web application designed to harness the capabilities o
 
 - ✅ `Up-to-date dependencies`
 - ✅ `Database`: `PostgreSQL`
-- ✅ Deployment on `Zeet` | `fl{/}`
+- ✅ Deployment on `Zeet` | `Docker`
 - ✅ Automated testing with `Github Actions`
 
 ## 🖼️ Screenshots
