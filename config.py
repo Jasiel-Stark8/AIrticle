@@ -4,10 +4,12 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 class DevelopmentConfig():
     """App configuration"""
     SECRET_KEY = os.getenv('SECRET_KEY')
     DEBUG = True if os.getenv('FLASK_ENV') == 'development' else False
+
 
 class DatabaseConfig():
     """Database configuration"""
@@ -18,4 +20,3 @@ class DatabaseConfig():
 class OpenaiConfig():
     """OpenAI configuration"""
     OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
-    
