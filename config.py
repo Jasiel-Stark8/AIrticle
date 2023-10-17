@@ -1,21 +1,21 @@
-"""Application configuration settings"""
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
-
-
-class DevelopmentConfig():
-    """App configuration"""
+class Config:
+    """Base configuration"""
     SECRET_KEY = os.getenv('SECRET_KEY')
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+class DevelopmentConfig(Config):
+    """Development environment configuration"""
     DEBUG = True if os.getenv('FLASK_ENV') == 'development' else False
+    SQLALCHEMY_DATABASE_URI = os.getenv('POSTGRESQL_DATABASE_URI')
 
-
-class DatabaseConfig():
-    """Database configuration"""
-    POSTGRESQL_DATABSAE_URI = os.getenv('POSTGRESQL_DATABSAE_URI')
-    SQLALCHEMY_TRACK_MODIFICATIONS=False
-
+class ProductionConfig(Config):
+    """Production environment configuration"""
+    DEBUG = False
+    SQLALCHEMY_DATABASE_URI = os.getenv('POSTGRESQL_DATABASE_URI')
 
 class OpenaiConfig():
     """OpenAI configuration"""
