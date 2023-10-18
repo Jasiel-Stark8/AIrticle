@@ -1,23 +1,18 @@
 """Authentication - Signup and Login routes"""
-from models.user import User
-import config
-from flask import Flask, render_template, request
-from sqlalchemy import SQLAlchemy
+from flask import render_template, request
 from werkzeug.security import generate_password_hash
-from dotenv import load_dotenv
+from models.user import User
+from app import db
 
-load_dotenv()
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = config.SQLALCHEMY_DATABASE_URI
-db = SQLAlchemy(app)
 
 @app.route('/signup', methods=['POST'])
 def signup():
+    """Signup logic"""
     if request.method == 'POST':
         email = request.form['email']
         password_hash = generate_password_hash(request.form['password'])
-        username = request.form['username']
+        firstname = request.form['firstname']
+        lastname = request.form['lastname']
 
         # Check if the user already exists
         existing_user = db.session.query(User).filter_by(email=email).first()
@@ -25,7 +20,7 @@ def signup():
             return render_template('signup_error.html', \
                                    message='An account with this email already exists.')
         else:
-            new_user = User(email=email, password_hash=password_hash, username=username)
+            new_user = User(email=email, password_hash=password_hash, firstname=firstname, lastname=lastname)
             db.session.add(new_user)
             db.session.commit()
             return render_template('signup_success.html', message='Account created successfully!')

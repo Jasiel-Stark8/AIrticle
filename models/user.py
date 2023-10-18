@@ -1,12 +1,6 @@
 """User model for PostgreSQL database"""
-from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-import config
-
-app = Flask(__name__)
-app.config.from_object(config)
-app.config['SQLALCHEMY_DATABASE_URI']='postgresql://airticle:220300@localhost:5432/airticle'
-db=SQLAlchemy(app)
+from app import db
 
 class User(db.Model):
     """User Schema"""
@@ -23,6 +17,3 @@ class User(db.Model):
         self.password_hash = password_hash
         self.firstname = firstname
         self.lastname = lastname
-
-    with app.app_context():
-        db.create_all()
