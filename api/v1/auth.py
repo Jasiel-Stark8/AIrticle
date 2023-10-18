@@ -1,3 +1,4 @@
+"""Authentication - Signup and Login routes"""
 from models.user import User
 import config
 from flask import Flask, render_template, request

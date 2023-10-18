@@ -12,7 +12,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 response = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
     messages=[
-        {"role": "system", "content": "Your task is to generate an article on the following topic: {Topic/sahara, south africa}. \
+        {"role": "system", "content": "Your task is to generate an article on the following topic: {Topic/Keywords}. \
             The article should be informative, engaging, and approximately {Word count} words long. \
                 Please include an introduction, main body, and conclusion."},
         {"role": "user", "content": "{animals}{sahara south africa}"}
