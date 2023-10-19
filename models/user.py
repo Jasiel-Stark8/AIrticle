@@ -12,7 +12,6 @@ class User(db.Model):
     lastname = db.Column(db.String(40), nullable=True)
 
     def __init__(self, email, password_hash, firstname, lastname=None):
-        self.id = id
         self.email = email
         self.password_hash = password_hash
         self.firstname = firstname
