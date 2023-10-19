@@ -2,7 +2,7 @@
 from flask import render_template, request
 from werkzeug.security import generate_password_hash
 from models.user import User
-from app import db
+from app import app, db
 
 
 @app.route('/signup', methods=['POST'])
