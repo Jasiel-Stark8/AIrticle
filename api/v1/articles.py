@@ -15,8 +15,15 @@ response = openai.ChatCompletion.create(
         {"role": "system", "content": "Your task is to generate an article on the following topic: {Topic/Keywords}. \
             The article should be informative, engaging, and approximately {Word count} words long. \
                 Please include an introduction, main body, and conclusion."},
-        {"role": "user", "content": "{animals}{sahara south africa}"}
-    ]
+        {"role": "user", "content": "{animals}{sahara south africa}"},
+    ],
+    temperature=0.7,
+    stream=True
 )
 
-print(response.choices[0].message)
+try:
+    for chunk in response:
+        print(chunk)
+except Exception:
+    print('There was an error generating your article \
+        Kindly click the generate button again to generate')
