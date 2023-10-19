@@ -1,5 +1,6 @@
 """Authentication - Signup and Login routes"""
 from flask import render_template, request
+from flask_login import login_required
 from werkzeug.security import generate_password_hash
 from models.user import User
 from app import app, db
@@ -27,3 +28,11 @@ def signup():
             db.session.add(new_user)
             db.session.commit()
             return render_template('signup_success.html', message='Account created successfully!')
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    """Login Logic"""
+    user = db.session.query(email=request.form['email'])
+    if user:
+        
