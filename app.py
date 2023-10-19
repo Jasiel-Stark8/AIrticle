@@ -16,9 +16,9 @@ db = SQLAlchemy(app)
 from models import user
 # from models import article
 # from models import autosave
-# from api.v1 import articles
-# from api.v1 import auth
-# from api.v1 import autosave
+# from api.v1.views import articles
+# from api.v1.views import auth
+# from api.v1.views import autosave
 # Import other routes and models as needed
 
 @app.route('/')
