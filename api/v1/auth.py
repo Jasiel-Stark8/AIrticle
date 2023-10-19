@@ -20,7 +20,10 @@ def signup():
             return render_template('signup_error.html', \
                                    message='An account with this email already exists.')
         else:
-            new_user = User(email=email, password_hash=password_hash, firstname=firstname, lastname=lastname)
+            new_user = User(email=email,
+                            password_hash=password_hash,
+                            firstname=firstname,
+                            lastname=lastname)
             db.session.add(new_user)
             db.session.commit()
             return render_template('signup_success.html', message='Account created successfully!')
