@@ -58,7 +58,7 @@ def login():
     if not user:
         print('Oops, Looks like you do not have an account Kindly create one')
     elif not email and not password_hash in request.form:
-            return render_template('signup_error.html', 
+        return render_template('signup_error.html',
                                    message='You have not entered some credentials.')
     else:
         return render_template('dashboard.html', message=f'Welcome {user.firstname}')
