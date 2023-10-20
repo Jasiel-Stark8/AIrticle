@@ -15,7 +15,11 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 topic = request.form['topic']
 keywords = request.form['keywords'].split(' ')
 word_count = request.form['word_count']
-
+article_length = {
+    'short': 400,
+    'medium': 1000,
+    'long': 2500
+}
 
 response = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
