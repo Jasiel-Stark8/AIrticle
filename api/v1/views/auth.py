@@ -6,15 +6,15 @@
 """
 from validate_email import validate_email
 from flask import flash, render_template, redirect, url_for, request
-from flask_login import *
-from werkzeug.security import generate_password_hash
+from flask_login import logout_user, login_required
+from werkzeug.security import generate_password_hash, check_password_hash
 from models.user import User
 from app import app, db
 from api.v1.views import app_views
 
 
 
-@app.route('/signup', methods=['POST'], strict_slashes=False)
+@app.route('/signup', methods=['GET', 'POST'], strict_slashes=False)
 def signup():
     """Signup logic"""
     if request.method == 'POST':
@@ -43,31 +43,31 @@ def signup():
                             lastname=lastname)
             db.session.add(new_user)
             db.session.commit()
-            return render_template('dashboard.html', message='Account created successfully!')
+            return render_template('login.html', message='Account created successfully!')
 
 
-@app_views.route('/login', methods=['GET'], strict_slashes=False)
+@app_views.route('/login', methods=['GET', 'POST'], strict_slashes=False)
 def login():
     """Login Logic"""
     if request.method == 'POST':
         email = request.form['email']
-        password_hash = generate_password_hash(request.form['password'])
+        password = generate_password_hash(request.form['password'])
 
-    # Double check if email and password match - paswords are hashed so how will it be verified
-    user = db.session.query().filter(User(email=request.form['email']))
+    # Feth user by email
+    user = db.session.query(User).filter_by(email=email).first()
+
+    # If user doesn't exist, or password does not match
     if not user:
-        print('Oops, Looks like you do not have an account Kindly create one')
-    elif not email and not password_hash in request.form:
-        return render_template('signup_error.html',
-                                   message='You have not entered some credentials.')
+        flash('Oops, Looks like you do not have an account Kindly create one')
+    elif not check_password_hash(user.password_hash, password):
+        flash('Incorrect password. Please try again!')
     else:
         return render_template('dashboard.html', message=f'Welcome {user.firstname}')
 
 
-@app_views.route('/logout/<int:id>', methods=['GET', 'POST'], strict_slashes=False)
+@app_views.route('/logout', methods=['GET', 'POST'], strict_slashes=False)
 @login_required
-def logout(id):
+def logout():
     """Logout logic"""
-    user = db.session.query().filter(User.id == id).first()
-    logout_user(user)
+    logout_user()
     return redirect('landing.html')
