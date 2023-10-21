@@ -7,16 +7,16 @@
     - FOrmats {DOCX, PDF, MD, TXT}
 """
 import os
-from flask import Flask, render_template, request, send_from_directory, make_response
+from flask import Flask, render_template, request, send_from_directory, make_response, abort, session
 from werkzeug.utils import secure_filename
 from api.v1.views import auth
 from api.v1.views import autosave
 from api.v1.views import gpt
 from api.v1.views.gpt import generate_article
 from api.v1.views import app_views
-from models import save_article
+from models.save_article import Article
 from app import app, db
-from flask_login import login_required
+from flask_login import login_required, current_user
 from docx import Document
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
@@ -111,7 +111,25 @@ def export_markdown(content, topic):
 @login_required
 def save_article():
     """Save article to database"""
-    
+    user_id = session.get('user_id')
+    if user_id is None:
+        abort(401)
+    else:
+        topic = request.form['topic']
+        content = request.form['content']
+        export_format = request.form['format']
+
+        new_article = Article(
+            title=topic,
+            content=content,
+            export_format=export_format
+        )
+        new_article.user_id = current_user.id 
+
+        db.session.add(new_article)
+        db.session.commit()
+        
+        return "Article Saved", 200
 
 
 @app_views.route('/new_article', methods=['POST'])

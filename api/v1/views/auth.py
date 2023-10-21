@@ -22,7 +22,7 @@ def signup():
 
         # Add extra layer of abstraction | email format and domain check
         if not validate_email(email, check_mx=True):
-            flash('Invalid email format or domain')
+            flash('Invalid Credentials')
 
         password_hash = generate_password_hash(request.form['password'])
         firstname = request.form['firstname']
@@ -51,18 +51,19 @@ def login():
     """Login Logic"""
     if request.method == 'POST':
         email = request.form['email']
-        password = generate_password_hash(request.form['password'])
+        password = request.form['password']  # No need to hash it here
 
-    # Feth user by email
-    user = db.session.query(User).filter_by(email=email).first()
+        # Fetch user by email
+        user = db.session.query(User).filter_by(email=email).first()
 
-    # If user doesn't exist, or password does not match
-    if not user:
-        flash('Oops, Looks like you do not have an account Kindly create one')
-    elif not check_password_hash(user.password_hash, password):
-        flash('Incorrect password. Please try again!')
-    else:
-        return render_template('dashboard.html', message=f'Welcome {user.firstname}')
+        # If user doesn't exist, or password does not match
+        if not user:
+            flash('Oops, Looks like you do not have an account. Kindly create one.')
+        elif not check_password_hash(user.password_hash, password):
+            flash('Incorrect password. Please try again!')
+        else:
+            session['user_id'] = user.id  # Storing user id in session
+            return render_template('dashboard.html', message=f'Welcome {user.firstname}')
 
 
 @app_views.route('/logout', methods=['GET', 'POST'], strict_slashes=False)
