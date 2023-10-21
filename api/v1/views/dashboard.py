@@ -27,7 +27,7 @@ UPLOAD_FOLDER = 'exports/'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'docx', 'md'}
 
 
-# Generate Button Logic
+# ================================================= Generate Article Logic =================================================
 @app_views.route('/generate', methods=['POST'], strict_slashes=False)
 @login_required
 def generate_content():
@@ -41,6 +41,8 @@ def generate_content():
     return render_template('dashboard.html', article=article)
 
 
+
+# ================================================= Export Article Logic =================================================
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -103,3 +105,17 @@ def export_markdown(content, topic):
         f.write(f"#{topic}\n\n")
         f.write(content)
     return filename
+
+
+@app_views.route('/save_article', methods=['POST'])
+@login_required
+def save_article():
+    """Save article to database"""
+    
+
+
+@app_views.route('/new_article', methods=['POST'])
+@login_required
+def new_article():
+    """Create new article"""
+    return render_template('dashboard.html')
