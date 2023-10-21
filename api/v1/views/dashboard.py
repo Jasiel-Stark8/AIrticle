@@ -17,6 +17,6 @@ def generate_content():
     keywords = request.form['keywords'].split(',')
     article_length = request.form['article_length']
 
-    article = generate_article(topic, keywords, article_length)    
+    article = generate_article(topic, keywords, article_length)
 
     return render_template('dashboard.html', article=article)
