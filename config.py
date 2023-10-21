@@ -21,3 +21,7 @@ class ProductionConfig(Config):
 class OpenaiConfig():
     """OpenAI configuration"""
     OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+
+class DashboardConfig():
+    """Configuration for dashboard"""
+    UPLOAD_FOLDER = os.getenv('UPLOAD_FOLDER')

@@ -1,4 +1,14 @@
-from flask import Flask, render_template, request
+"""Dashboard view logic:
+    - Send topic and keywords from client to GPT-3.5-turbo 
+    - Generate content
+    
+   Exports:
+    - Set root directory that will be created on users device
+    - FOrmats {DOCX, PDF, MD, TXT}
+"""
+import os
+from flask import Flask, render_template, request, send_from_directory, make_response
+from werkzeug.utils import secure_filename
 from api.v1.views import auth
 from api.v1.views import autosave
 from api.v1.views import gpt
@@ -10,6 +20,12 @@ from flask_login import login_required
 from docx import Document
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
+import markdown
+
+
+UPLOAD_FOLDER = 'exports/'
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'docx', 'md'}
+
 
 # Generate Button Logic
 @app_views.route('/generate', methods=['POST'], strict_slashes=False)
@@ -25,29 +41,65 @@ def generate_content():
     return render_template('dashboard.html', article=article)
 
 
-@app_views.route('export')
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+@app_views.route('/export', methods=['POST'])
 @login_required
-def export_docx():
-    """Export article as DOCX"""
+def export_content():
+    """Export the content to desired format"""
+    content = request.form['content']
+    topic = request.form['topic']
+    export_format = request.form['format']
+
+    if export_format == 'docx':
+        filename = export_docx(content, topic)
+    elif export_format == 'pdf':
+        filename = export_pdf(content, topic)
+    elif export_format == 'txt':
+        filename = export_txt(content, topic)
+    elif export_format == 'markdown':
+        filename = export_markdown(content, topic)
+    else:
+        return "Unsupported Format", 400
+
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename, as_attachment=True)
+
+
+def export_docx(content, topic):
+    """Export content as DOCX"""
     doc = Document()
-    doc.add_heading('{topic}')
-    doc.add_paragraph('{article}')
-    doc.save('{topic}.docx')
+    doc.add_heading(topic, level=1)
+    doc.add_paragraph(content)
+    filename = secure_filename(f"{topic}.docx")
+    doc.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    return filename
 
 
-def export_pdf():
-    """Export article as PDF"""
-    file = canvas.Canvas('{topic}.pdf', pagesize=letter)
+def export_pdf(content, topic):
+    """Export content as PDF"""
+    file_path = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f"{topic}.pdf"))
+    c = canvas.Canvas(file_path, pagesize=letter)
     width, height = letter
-    file.drawString(100, height - 100, '{article}')
-    file.save()
+    c.drawString(100, height - 100, content)
+    c.save()
+    return f"{topic}.pdf"
 
 
-def export_txt():
-    """Export article as Txt"""
-    pass
+def export_txt(content, topic):
+    """Export content as Txt"""
+    filename = secure_filename(f"{topic}.txt")
+    with open(os.path.join(app.config['UPLOAD_FOLDER'], filename), 'w') as f:
+        f.write(content)
+    return filename
 
 
-def export_markdown():
-    """Export article as Markdown"""
-    pass
+def export_markdown(content, topic):
+    """Export content as Markdown"""
+    filename = secure_filename(f"{topic}.md")
+    with open(os.path.join(app.config['UPLOAD_FOLDER'], filename), 'w') as f:
+        f.write(f"#{topic}\n\n")
+        f.write(content)
+    return filename
