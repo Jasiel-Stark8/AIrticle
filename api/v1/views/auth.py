@@ -14,7 +14,7 @@ from api.v1.views import app_views
 
 
 
-@app.route('/signup', methods=['GET', 'POST'], strict_slashes=False)
+@app_views.route('/signup', methods=['GET', 'POST'], strict_slashes=False)
 def signup():
     """Signup logic"""
     if request.method == 'POST':

@@ -11,33 +11,37 @@ from flask import request
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-# Get article parameters from client to feed to GPT
-topic = request.form['topic']
-keywords = request.form['keywords'].split(' ')
-word_count = request.form['word_count']
-article_length = {
-    'short': 400,
-    'medium': 1000,
-    'long': 2500
-}
 
-response = openai.ChatCompletion.create(
-    model="gpt-3.5-turbo",
-    messages=[
-        {"role": "system", "content": \
-            "Your task is to generate an article on the following topic and keywords: {topic/keywords}. \
-            The article should be informative, engaging, and approximately \
-                {Word_count} words long. \
-                Please include an introduction, main body, and conclusion."},
-        {"role": "user", "content": "{animals}{sahara south africa}"},
-    ],
-    temperature=0.7,
-    stream=True
-)
+def generate_article(topic, keywords=None, article_length="medium"):
+    # Determine word count based on article_length
+    word_count = {
+        'short': '500',
+        'medium': '1000',
+        'long': '2000'
+    }.get(article_length, '1000')  # Default to medium if not recognized
 
-try:
-    for chunk in response:
-        print(chunk)
-except Exception:
-    print('There was an error generating your article \
-        Kindly click the generate button again to generate')
+    # Adjust the content strings with the provided values
+    system_message = f"Your task is to generate an article on the topic: {topic}. Keywords: {keywords}. \
+                      The article should be informative, engaging, and approximately {word_count} words long. \
+                      Please include an introduction, main body, and conclusion."
+    user_message = f"{topic} {keywords}"
+
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": system_message},
+            {"role": "user", "content": user_message},
+        ],
+        temperature=0.7,
+        stream=True
+    )
+
+    # Capture the response
+    generated_content = []
+    try:
+        for chunk in response:
+            generated_content.append(chunk['choices'][0]['message']['content'])
+        return ' '.join(generated_content)
+    except Exception as e:
+        return f'There was an error generating your article: {e}. \
+            Kindly click the generate button again.'
