@@ -1,0 +1,31 @@
+what are all the possible RESTful API endpoints, THIS IS MY LIST
+AUTH & USER:
+/signup ['GET'] ['POST']
+/login ['GET'] ['POST']
+/logout ['GET'] ['POST']
+/update_username ['GET'] ['PUT']
+/update_password ['GET'] ['PUT']
+/username ['GET']
+
+GENERATE ARTICLE
+/generate ['POST']
+
+VIEW ARTICLES HISTORY
+/view_articles ['GET']
+
+EDIT ARTICLE FROM HISTORY
+/edit_article ['GET'] ['PUT]
+
+EXPORT ARTICLE
+/export ['POST'] - format {DOCX, PDF, MD, TXT}
+
+NEW ARTICLE
+/new_article
+
+SAVE ARTICLE
+/save_article ['POST']
+
+AUTOSAVE
+/auto_save ['POST']
+
+
