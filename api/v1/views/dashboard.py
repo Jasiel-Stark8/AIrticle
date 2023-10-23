@@ -4,7 +4,7 @@
     
    Exports:
     - Set root directory that will be created on users device
-    - FOrmats {DOCX, PDF, MD, TXT}
+    - Formats {DOCX, PDF, MD, TXT}
 """
 import os
 from flask import Flask, render_template, request, send_from_directory, make_response, abort, session
@@ -126,7 +126,7 @@ def save_article():
             content=content,
             export_format=export_format
         )
-        new_article.user_id = user.id
+        new_article.user_id = current_user.id
 
         db.session.add(new_article)
         db.session.commit()

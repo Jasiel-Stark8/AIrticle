@@ -98,6 +98,39 @@ A commercialized version of this app will be available, allowing users without a
 └── 📄 .gitignore                # List of files/folders to ignore in version control
 ```
 
+## API Endopints
+```
+### Auth & User
+1. `/signup` - `['GET', 'POST']`
+2. `/login` - `['GET', 'POST']`
+3. `/logout` - `['POST']` (usually, logging out is a POST operation)
+4. `/update_username` - `['PUT']`
+5. `/update_password` - `['PUT']`
+6. `/username` - `['GET']`
+7. `/user_info` - `['GET']` (To provide additional user info if needed)
+
+### Content Generation
+8. `/generate` - `['POST']`
+
+### Article Management
+9. `/view_articles` - `['GET']`
+10. `/edit_article/<article_id>` - `['GET', 'PUT']` (use article_id as a parameter)
+11. `/new_article` - `['POST']` (To save a new article, similar to save but initializes a new article)
+12. `/save_article` - `['POST', 'PUT']` (Could also allow PUT for updates)
+13. `/delete_article/<article_id>` - `['DELETE']` (To delete an article)
+  
+### Article Export
+14. `/export/<article_id>` - `['POST']` (use article_id as a parameter)
+
+### AutoSave
+15. `/auto_save` - `['POST']`
+
+### Extra Features
+16. `/search_articles` - `['GET']` (To allow users to search their saved articles)
+17. `/forgot_password` - `['POST', 'PUT']` (In case user forgets the password)
+18. `/activate_account` - `['GET']` (If you want to include email-based account activation)
+```
+
 ## 🛠️ Technologies
 
 - **Languages**: 
