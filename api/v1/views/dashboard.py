@@ -126,7 +126,7 @@ def save_article():
             content=content,
             export_format=export_format
         )
-        new_article.user_id = current_user.id
+        new_article.user_id = user.id
 
         db.session.add(new_article)
         db.session.commit()
