@@ -1,13 +1,13 @@
 """Dashboard view logic:
-    - Send topic and keywords from client to GPT-3.5-turbo 
-    - Generate content
-    
-   Exports:
-    - Set root directory that will be created on users device
-    - Formats {DOCX, PDF, MD, TXT}
+- Send topic and keywords from client to GPT-3.5-turbo
+- Generate content
+
+Exports:
+- Set root directory that will be created on users device
+- Formats {DOCX, PDF, MD, TXT}
 """
 import os
-from flask import Flask, render_template, request, send_from_directory, make_response, abort, session
+from flask import Flask, render_template, request, send_from_directory, make_response, abort, session, flash
 from werkzeug.utils import secure_filename
 import markdown
 from api.v1.views import auth
@@ -16,7 +16,7 @@ from api.v1.views import gpt
 from api.v1.views.gpt import generate_article
 from api.v1.views import app_views
 from models.save_article import Article
-from models.autosave import Draft
+# from models.autosave import Draft
 from app import app, db
 from flask_login import login_required, current_user
 from docx import Document
@@ -24,12 +24,11 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 
 
-
 UPLOAD_FOLDER = 'exports/'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'docx', 'md'}
 
 
-# ================================================= Generate Article Logic =================================================
+# ======================== Generate Article Logic ========================
 @app_views.route('/generate', methods=['POST'], strict_slashes=False)
 @login_required
 def generate_content():
@@ -43,8 +42,7 @@ def generate_content():
     return render_template('dashboard.html', article=article)
 
 
-
-# ================================================= Export Article Logic =================================================
+# ======================== Export Article Logic ========================
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -132,6 +130,8 @@ def save_article():
         db.session.commit()
 
         return "Article Saved", 200
+    # else:
+    #     return "Problem saving article, click save again", 400
 
 
 @app_views.route('/new_article', methods=['POST'], strict_slashes=False)
