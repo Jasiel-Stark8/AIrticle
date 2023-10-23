@@ -130,6 +130,7 @@ A commercialized version of this app will be available, allowing users without a
 17. `/forgot_password` - `['POST', 'PUT']` (In case user forgets the password)
 18. `/activate_account` - `['GET']` (If you want to include email-based account activation)
 
+---
 
 ## 🛠️ Technologies
 
