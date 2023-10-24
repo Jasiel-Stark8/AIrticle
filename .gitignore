@@ -160,3 +160,4 @@ cython_debug/
 #.idea/
 airticle_venv
 .env
+.idea
