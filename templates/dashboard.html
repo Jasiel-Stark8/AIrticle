@@ -32,7 +32,7 @@
 <div class="main-container">
 
   <!-- LEFT SECTION -->
-  <form class="left_section" action="/api/v1/generate" method="POST">
+  <form class="left_section" action="/generate" method="POST">
       <button class="new-chat"> + New Article </button>
       <h2 id="intro-text"> Where AI meets content ✨ </h2>
       <div class="article-input">
@@ -44,7 +44,7 @@
           <input type="text" name="keywords" placeholder="South Africa, deserts, wildlife...">
 
           <label>How long do you want your article to be? 🙂</label>
-          <select class="aritcle-length" name="length">
+          <select class="aritcle-length" name="article_length">
             <option value="short">Bite-sized</option>
             <option value="medium">Detailed</option>
             <option value="long">Comprehensive</option>

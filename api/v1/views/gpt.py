@@ -10,13 +10,16 @@ load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
-def generate_article(topic, keywords=None, article_length="medium"):
+def generate_article(topic, keywords, article_length):
     # Determine word count based on article_length
     word_count = {
         'short': '500',
         'medium': '1000',
         'long': '2000'
     }.get(article_length, '1000')  # Default to medium if not recognized
+
+    if not word_count:
+        article_length = word_count.keys(1)
 
     # Adjust the content strings with the provided values
     system_message = f"Your task is to generate an article on the topic: {topic}. Keywords: {keywords}. \
