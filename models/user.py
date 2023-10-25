@@ -1,6 +1,6 @@
 """User model for PostgreSQL database"""
 from flask_sqlalchemy import SQLAlchemy
-from app import db
+from database import db
 
 class User(db.Model):
     """User Schema"""

@@ -7,28 +7,26 @@ Exports:
 - Formats {DOCX, PDF, MD, TXT}
 """
 import os
-from flask import Flask, render_template, request, send_from_directory, make_response, abort, session, flash
+from flask import Flask, render_template, request, send_from_directory, abort, session
 from werkzeug.utils import secure_filename
 import markdown
-from api.v1.views import auth
-from api.v1.views import autosave
-from api.v1.views import gpt
 from api.v1.views.gpt import generate_article
-from api.v1.views import app_views
 from models.save_article import Article
-# from models.autosave import Draft
-from app import app, db
+from database import db
 from docx import Document
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 
+# BLUEPRINT
+from flask import Blueprint
+dashboard = Blueprint('dashboard', __name__)
 
 UPLOAD_FOLDER = 'exports/'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'docx', 'md'}
 
 
 # ======================== Generate Article Logic ========================
-@app_views.route('/generate', methods=['POST'], strict_slashes=False)
+@dashboard.route('/generate', methods=['POST'], strict_slashes=False)
 def generate_content():
     """Get article parameters from client to feed to GPT"""
     topic = request.form['topic']
@@ -46,7 +44,7 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-@app_views.route('/export', methods=['POST'], strict_slashes=False)
+@dashboard.route('/export', methods=['POST'], strict_slashes=False)
 def export_content():
     """Export the content to desired format"""
     content = request.form['content']
@@ -104,7 +102,7 @@ def export_markdown(content, topic):
     return filename
 
 
-@app_views.route('/save_article', methods=['POST'], strict_slashes=False)
+@dashboard.route('/save_article', methods=['POST'], strict_slashes=False)
 def save_article():
     """Save article to database"""
     user_id = session.get('user_id')
@@ -130,7 +128,7 @@ def save_article():
     #     return "Problem saving article, click save again", 400
 
 
-@app_views.route('/new_article', methods=['POST'], strict_slashes=False)
+@dashboard.route('/new_article', methods=['POST'], strict_slashes=False)
 def create_new_article():
     """Create new article"""
     return render_template('dashboard.html')

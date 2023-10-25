@@ -2,7 +2,6 @@
 import os
 import openai
 from dotenv import load_dotenv
-from flask import request
 # from models import article
 # from models import user
 
@@ -11,6 +10,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 def generate_article(topic, keywords, article_length):
+    """GPT validation and generation"""
     # Determine word count based on article_length
     word_count = {
         'short': '500',

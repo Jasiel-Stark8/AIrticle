@@ -5,10 +5,10 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 from config import DevelopmentConfig, Config, OpenaiConfig
-from api.v1.views import app_views
-from models import user
+from database import db
 
 load_dotenv()
+
 app = Flask(__name__)
 cors = CORS(app, resources={r"/api/v1/*": {"app": "0.0.0.0"}})
 app.config.from_object(DevelopmentConfig)
@@ -16,24 +16,23 @@ app.config.from_object(Config)
 app.config.from_object(OpenaiConfig)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://airticle:220300@localhost:5432/airticle'
-app.register_blueprint(app_views)
-db = SQLAlchemy(app)
 
+# Now bind the app to the database
+db.init_app(app)
 
-# Import models and routes here AFTER creating the app and db instances.
+# Move the imports here, after the app and db are set up
+from models import user
+from api.v1.views.dashboard import dashboard
+from api.v1.views.auth import auth
 
-# from models import save_article
-# from models import autosave
-# from api.v1.views import gpt
-# from api.v1.views import auth
-# from api.v1.views import autosave
-
+# Register the blueprints
+app.register_blueprint(auth, url_prefix='/api/v1')
+app.register_blueprint(dashboard, url_prefix='/api/v1')
 
 @app.route('/')
 def landing_page():
     """Landing Page"""
     return render_template('landing.html')
-
 
 @app.route('/dashboard')
 def home():

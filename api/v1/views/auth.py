@@ -5,16 +5,17 @@
     - User Dashboard Session
 """
 from validate_email import validate_email
-from flask import flash, render_template, redirect, url_for, request
+from flask import flash, render_template, request
 # from flask_login import logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from models.user import User
-from app import app, db
-from api.v1.views import app_views
+from database import db
+# BLUEPRINT
+from flask import Blueprint
+auth = Blueprint('auth', __name__)
 
 
-
-@app_views.route('/signup', methods=['GET', 'POST'], strict_slashes=False)
+@auth.route('/signup', methods=['GET', 'POST'], strict_slashes=False)
 def signup():
     """Signup logic"""
     if request.method == 'POST':
@@ -46,7 +47,7 @@ def signup():
             return render_template('login.html', message='Account created successfully!')
 
 
-@app_views.route('/login', methods=['GET', 'POST'], strict_slashes=False)
+@auth.route('/login', methods=['GET', 'POST'], strict_slashes=False)
 def login():
     """Login Logic"""
     if request.method == 'POST':
@@ -66,7 +67,7 @@ def login():
             return render_template('dashboard.html', message=f'Welcome {user.firstname}')
 
 
-@app_views.route('/logout', methods=['GET', 'POST'], strict_slashes=False)
+@auth.route('/logout', methods=['GET', 'POST'], strict_slashes=False)
 def logout():
     """Logout logic"""
     return render_template('login.html')

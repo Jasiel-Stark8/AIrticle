@@ -1,6 +1,6 @@
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
-from app import app, db
+from database import db
 
 class Article(db.Model):
     """Article database schema"""

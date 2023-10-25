@@ -5,7 +5,7 @@
 # from models.autosave import Draft
 # from models.save_article import Article
 # from models import user
-# from app import app, db
+# from database import db
 # from dotenv import load_dotenv
 
 # load_dotenv()

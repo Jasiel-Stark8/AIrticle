@@ -1,6 +1,6 @@
 # """Create draft model for autosave operation"""
 # from flask_sqlalchemy import SQLAlchemy
-# from app import app, db
+# from database import db
 
 
 # class Draft(db.Model):
