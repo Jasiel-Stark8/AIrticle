@@ -3,9 +3,10 @@ import os
 from flask import Flask, render_template
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
-from config import DevelopmentConfig, Config, OpenaiConfig
 from dotenv import load_dotenv
+from config import DevelopmentConfig, Config, OpenaiConfig
 from api.v1.views import app_views
+from models import user
 
 load_dotenv()
 app = Flask(__name__)
@@ -20,7 +21,7 @@ db = SQLAlchemy(app)
 
 
 # Import models and routes here AFTER creating the app and db instances.
-from models import user
+
 # from models import save_article
 # from models import autosave
 # from api.v1.views import gpt
@@ -29,7 +30,14 @@ from models import user
 
 
 @app.route('/')
+def landing_page():
+    """Landing Page"""
+    return render_template('landing.html')
+
+
+@app.route('/dashboard')
 def home():
+    """Home Page - Dashboard"""
     return render_template('dashboard.html')
 
 if __name__ == '__main__':

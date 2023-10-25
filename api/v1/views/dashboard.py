@@ -18,7 +18,6 @@ from api.v1.views import app_views
 from models.save_article import Article
 # from models.autosave import Draft
 from app import app, db
-from flask_login import login_required, current_user
 from docx import Document
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
@@ -30,7 +29,6 @@ ALLOWED_EXTENSIONS = {'txt', 'pdf', 'docx', 'md'}
 
 # ======================== Generate Article Logic ========================
 @app_views.route('/generate', methods=['POST'], strict_slashes=False)
-@login_required
 def generate_content():
     """Get article parameters from client to feed to GPT"""
     topic = request.form['topic']
@@ -49,7 +47,6 @@ def allowed_file(filename):
 
 
 @app_views.route('/export', methods=['POST'], strict_slashes=False)
-@login_required
 def export_content():
     """Export the content to desired format"""
     content = request.form['content']
@@ -108,7 +105,6 @@ def export_markdown(content, topic):
 
 
 @app_views.route('/save_article', methods=['POST'], strict_slashes=False)
-@login_required
 def save_article():
     """Save article to database"""
     user_id = session.get('user_id')
@@ -124,7 +120,7 @@ def save_article():
             content=content,
             export_format=export_format
         )
-        new_article.user_id = current_user.id
+        new_article.user_id = session.id
 
         db.session.add(new_article)
         db.session.commit()
@@ -135,7 +131,6 @@ def save_article():
 
 
 @app_views.route('/new_article', methods=['POST'], strict_slashes=False)
-@login_required
 def create_new_article():
     """Create new article"""
     return render_template('dashboard.html')

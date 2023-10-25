@@ -3,9 +3,7 @@ import os
 import openai
 from dotenv import load_dotenv
 from flask import request
-# from api.v1.views import auth
 # from models import article
-# from models import autosave
 # from models import user
 
 load_dotenv()

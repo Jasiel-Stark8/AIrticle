@@ -67,8 +67,6 @@ def login():
 
 
 @app_views.route('/logout', methods=['GET', 'POST'], strict_slashes=False)
-@login_required
 def logout():
     """Logout logic"""
-    logout_user()
-    return redirect('landing.html')
+    return render_template('login.html')

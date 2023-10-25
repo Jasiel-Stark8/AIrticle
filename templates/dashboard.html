@@ -32,23 +32,23 @@
 <div class="main-container">
 
   <!-- LEFT SECTION -->
-  <form class="left_section" action="/generate" method="POST">
+  <form class="left_section" action="/api/v1/generate" method="POST">
       <button class="new-chat"> + New Article </button>
       <h2 id="intro-text"> Where AI meets content ✨ </h2>
       <div class="article-input">
 
           <label>What topic is your article about? 🧐</label>
-          <input type="text" placeholder="Deserts of South Africa">
+          <input type="text" name="topic" placeholder="Deserts of South Africa">
 
           <label>Enter Keywords - <small>Separate with commas ','</small></label> <br/>
-          <input type="text" placeholder="South Africa, deserts, wildlife...">
+          <input type="text" name="keywords" placeholder="South Africa, deserts, wildlife...">
 
           <label>How long do you want your article to be? 🙂</label>
-          <select class="aritcle-length">
+          <select class="aritcle-length" name="length">
             <option value="short">Bite-sized</option>
             <option value="medium">Detailed</option>
             <option value="long">Comprehensive</option>
-          </select>
+        </select>
           <!-- Add the other form elements here -->
       </div>
 
@@ -60,8 +60,9 @@
 
   <!-- RIGHT SECTION -->
   <section class="right_section">
-    <div class="article-display" id="edit-article" contenteditable="true"></div>
-    {{ article }}
+    <div class="article-display" id="edit-article" contenteditable="true">
+      {{ article }}
+    </div>
   </section>
 </div>
 
