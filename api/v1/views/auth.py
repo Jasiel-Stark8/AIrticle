@@ -6,7 +6,7 @@
 """
 from validate_email import validate_email
 from flask import flash, render_template, redirect, url_for, request
-from flask_login import logout_user, login_required
+# from flask_login import logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from models.user import User
 from app import app, db

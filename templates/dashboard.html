@@ -1,24 +1,71 @@
-<!doctype html>
-<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-             <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-                         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" url_for(="static" filename="/css/styles.css")>
-             <title>AIrticle</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIrticle</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <!-- JQuery Import -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 <body>
-  <!-- HEADER -->
-  <header></header>
-  
-    <!-- LEFT SECTION -->
-    <section class="left_section"></section>
 
-    <!-- RIGHT SECTION -->
-    <section class="right_section"></section>
 
-  <!-- SCRIPTS -->
-  <script></script>
-  <script></script>
+<!-- HEADER -->
+<nav class="navbar">
+  <h1 class="logo">AIRTICLE</h1>
+  <div class="profile">
+      <div class="dropdown">
+          <button> <img src="profile-pic.jpg" class="profile-pic">Jason Quist</button>
+          <div class="dropdown-content">
+              <!-- <a href="#">My Plan</a> -->
+              <!-- <a href="#">Upgrade to Airticle Pro</a> -->
+              <a href="#"> Updates & FAQs </a>
+              <a href="#"> Switch Theme </a>
+              <a href="#" style="color: red;"> Log out </a>
+          </div>
+      </div>
+  </div>
+</nav>
+
+<div class="main-container">
+
+  <!-- LEFT SECTION -->
+  <form class="left_section" action="/generate" method="POST">
+      <button class="new-chat"> + New Article </button>
+      <h2 id="intro-text"> Where AI meets content ✨ </h2>
+      <div class="article-input">
+
+          <label>What topic is your article about? 🧐</label>
+          <input type="text" placeholder="Deserts of South Africa">
+
+          <label>Enter Keywords - <small>Separate with commas ','</small></label> <br/>
+          <input type="text" placeholder="South Africa, deserts, wildlife...">
+
+          <label>How long do you want your article to be? 🙂</label>
+          <select class="aritcle-length">
+            <option value="short">Bite-sized</option>
+            <option value="medium">Detailed</option>
+            <option value="long">Comprehensive</option>
+          </select>
+          <!-- Add the other form elements here -->
+      </div>
+
+      <button type="submit"> GENERATE </button>
+  </form>
+
+
+
+
+  <!-- RIGHT SECTION -->
+  <section class="right_section">
+    <div class="article-display" id="edit-article" contenteditable="true"></div>
+    {{ article }}
+  </section>
+</div>
+
+
+<!-- <script src="{{ url_for('static', filename='js/script.js') }}"></script> -->
 </body>
 </html>
