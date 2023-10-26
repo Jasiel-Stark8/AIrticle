@@ -99,6 +99,7 @@ button:hover {
     border: 1px solid #eee;
     border-radius: 4px;
     overflow-y: auto;
+    position: relative;
 }
 
 .article-display:empty::before {
