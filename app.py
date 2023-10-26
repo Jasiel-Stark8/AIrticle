@@ -10,12 +10,12 @@ from database import db
 load_dotenv()
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/api/v1/*": {"app": "0.0.0.0"}})
+cors = CORS(app, resources={r"/api/v1/*": {"origins": "0.0.0.0"}})
 app.config.from_object(DevelopmentConfig)
 app.config.from_object(Config)
 app.config.from_object(OpenaiConfig)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://airticle:220300@localhost:5432/airticle'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
 
 # Now bind the app to the database
 db.init_app(app)
@@ -33,6 +33,19 @@ app.register_blueprint(dashboard)
 def landing_page():
     """Landing Page"""
     return render_template('landing.html')
+
+
+@app.route('/sign-up')
+def signup_page():
+    """Sign Up Page"""
+    return render_template('signup.html')
+
+
+@app.route('/log-in')
+def login_page():
+    """Log in Page"""
+    return render_template('login.html')
+
 
 @app.route('/dashboard')
 def home():

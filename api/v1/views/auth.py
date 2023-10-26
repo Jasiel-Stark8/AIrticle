@@ -5,14 +5,15 @@
     - User Dashboard Session
 """
 from validate_email import validate_email
-from flask import flash, render_template, request
+from flask import flash, render_template, session, request
 # from flask_login import logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from models.user import User
 from database import db
+
 # BLUEPRINT
 from flask import Blueprint
-auth = Blueprint('auth', __name__)
+auth = Blueprint('auth', __name__, url_prefix='/auth')
 
 
 @auth.route('/signup', methods=['GET', 'POST'], strict_slashes=False)
@@ -41,7 +42,8 @@ def signup():
             new_user = User(email=email,
                             password_hash=password_hash,
                             firstname=firstname,
-                            lastname=lastname)
+                            lastname=lastname,
+                            articles=None)
             db.session.add(new_user)
             db.session.commit()
             return render_template('login.html', message='Account created successfully!')
@@ -70,4 +72,5 @@ def login():
 @auth.route('/logout', methods=['GET', 'POST'], strict_slashes=False)
 def logout():
     """Logout logic"""
+    session.pop('user_id', None)
     return render_template('login.html')

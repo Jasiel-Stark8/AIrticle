@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Sign up | AIrticle</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
+</head>
+<body>
+    <!-- Display flash messages -->
+    <div class="flash-container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flash-messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <form class="container" id="card" method="post" action="{{ url_for('auth.signup') }}">
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo">
+        </div>
+        <h1>Create Your Account</h1>
+        <p>Sign Up to continue with AIrticle</p>
+        <input type="email" class="input_email" name="email" placeholder="Email Address" required>
+        <input type="password" class="input_password" name="password" placeholder="Password" required>
+        <input type="text" class="input_fname" name="firstname" placeholder="First Name" required>
+        <input type="text" class="input_lname" name="lastname" placeholder="Last Name" required> <!-- Add 'required' if last name is mandatory -->
+
+        <button type="submit" class="btn btn-primary">Continue</button>
+        <p>Already have an account?</p><a href="{{ url_for('login_page') }}">Log in</a>
+    </form>
+</body>
+</html>

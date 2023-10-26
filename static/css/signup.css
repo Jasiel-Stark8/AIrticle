@@ -1,0 +1,10 @@
+* {
+    margin: 0;
+    padding: 0;
+    display: grid;
+}
+
+
+span::before, span::after {
+    box-sizing: border-box;
+}
