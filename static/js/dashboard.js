@@ -55,7 +55,7 @@ $(document).ready(function(){
         keywords: $("input[name='keywords']").val(),
         article_length: $("select[name='article_length']").val()
       };
-  
+
       $.ajax({
         type: "POST",
         url: "/generate",
@@ -81,5 +81,3 @@ $(document).ready(function(){
       });
     });
   });
-  
-  
