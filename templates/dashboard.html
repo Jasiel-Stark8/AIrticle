@@ -6,8 +6,9 @@
     <title>AIrticle</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 
-    <!-- JQuery Import -->
+    <!-- JQuery import and important scrips-->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
 </head>
 <body>
 
@@ -29,7 +30,7 @@
 <div class="main-container">
 
   <!-- LEFT SECTION -->
-  <form class="left_section"  action="/generate" method="POST">
+  <form class="left_section" id="generate-article-form">
       <button class="new-chat"> + New Article </button>
       <h2 id="intro-text"> Where AI meets content ✨ </h2>
       <div class="article-input">
@@ -51,12 +52,21 @@
       <button type="submit"> GENERATE </button>
   </form>
 
-  <!-- RIGHT SECTION -->
   <section class="right_section">
     <div class="article-display">
-      <p>{{ article }}</p>
+      <div id="load" style="display:none;">
+        <div>G</div>
+        <div>N</div>
+        <div>I</div>
+        <div>D</div>
+        <div>A</div>
+        <div>O</div>
+        <div>L</div>
+      </div>
+      <p></p>
     </div>
-  </section>
+  </section>  
+  
 </div>
 
 </body>

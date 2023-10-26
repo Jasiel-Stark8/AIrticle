@@ -9,7 +9,7 @@ Exports:
 import os
 import openai
 from dotenv import load_dotenv
-from flask import Flask, render_template, request, send_from_directory, abort, session
+from flask import Flask, render_template, request, send_from_directory, abort, session, jsonify
 from werkzeug.utils import secure_filename
 import markdown
 # from api.v1.views.gpt import generate_article
@@ -40,11 +40,12 @@ def generate_article(topic, keywords, article_length):
         'long': '2000'
     }.get(article_length, '1000')
 
-    system_message = f"Your task is to generate an article on the topic: {topic}. Keywords: {keywords}. \
+    system_message = f"Your task is to generate an article on the topic: {topic}. Keywords: {', '.join(keywords)}. \
                       The article should be informative, engaging, and approximately {word_count} words long. \
                       Please include an introduction, main body, and conclusion."
-    user_message = f"{topic} {keywords}"
+    user_message = f"{topic} {', '.join(keywords)}"
 
+    # Uncomment and modify this when you're using the OpenAI API
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
@@ -52,36 +53,25 @@ def generate_article(topic, keywords, article_length):
             {"role": "user", "content": user_message},
         ],
         temperature=0.7,
-        stream=True
     )
 
-    generated_content = []
-    try:
-        for chunk in response:
-            if 'choices' in chunk and 'delta' in chunk['choices'][0]:
-                generated_content.append(chunk['choices'][0]['delta']['content'])
-        return ' '.join(generated_content)
-    except Exception as e:
-        return f'There was an error generating your article: {e}. \
-                Kindly click the generate button again.'
+    generated_content = response.choices[0].message['content'].strip()
+    return generated_content or 'Failed to generate an article.'
 
-
-# Define routing
-@dashboard.route('/generate', methods=['POST'], strict_slashes=False)
+@dashboard.route('/generate', methods=['POST'])
 def generate_content():
     """Get article parameters from client to feed to GPT"""
-    topic = request.form['topic']
-    keywords = [k.strip() for k in request.form['keywords'].split(',')]
-    article_length = request.form['article_length']
+    topic = request.form.get('topic')
+    keywords = [k.strip() for k in request.form.get('keywords', '').split(',')]
+    article_length = request.form.get('article_length')
 
     generated_article = generate_article(topic, keywords, article_length)
 
     if generated_article:
-        # print(generated_article)
-        return render_template('dashboard.html', article=generated_article)
+        response = jsonify({'generated_article': generated_article})
+        return response
     else:
-        print('No article was generated.')
-        return render_template('dashboard.html', article="Failed to generate an article.")
+        return render_template('dashboard.html', generated_article="Failed to generate an article.")
 
 
 # ======================== Export Article Logic ========================
