@@ -11,16 +11,13 @@
 </head>
 <body>
 
-
 <!-- HEADER -->
 <nav class="navbar">
   <h1 class="logo">AIRTICLE</h1>
   <div class="profile">
       <div class="dropdown">
-          <button> <img src="profile-pic.jpg" class="profile-pic">Jason Quist</button>
+          <button> <img src="{{ url_for('static', filename='profile-pic.jpg') }}" class="profile-pic">Jason Quist</button>
           <div class="dropdown-content">
-              <!-- <a href="#">My Plan</a> -->
-              <!-- <a href="#">Upgrade to Airticle Pro</a> -->
               <a href="#"> Updates & FAQs </a>
               <a href="#"> Switch Theme </a>
               <a href="#" style="color: red;"> Log out </a>
@@ -32,7 +29,7 @@
 <div class="main-container">
 
   <!-- LEFT SECTION -->
-  <form class="left_section" action="/generate" method="POST">
+  <form class="left_section"  action="/generate" method="POST">
       <button class="new-chat"> + New Article </button>
       <h2 id="intro-text"> Where AI meets content ✨ </h2>
       <div class="article-input">
@@ -48,25 +45,19 @@
             <option value="short">Bite-sized</option>
             <option value="medium">Detailed</option>
             <option value="long">Comprehensive</option>
-        </select>
-          <!-- Add the other form elements here -->
+          </select>
       </div>
 
       <button type="submit"> GENERATE </button>
   </form>
 
-
-
-
   <!-- RIGHT SECTION -->
   <section class="right_section">
-    <div class="article-display" id="edit-article" contenteditable="true">
-      {{ article }}
+    <div class="article-display">
+      <p>{{ article }}</p>
     </div>
   </section>
 </div>
 
-
-<!-- <script src="{{ url_for('static', filename='js/script.js') }}"></script> -->
 </body>
 </html>

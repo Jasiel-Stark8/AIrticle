@@ -18,9 +18,6 @@ def generate_article(topic, keywords, article_length):
         'long': '2000'
     }.get(article_length, '1000')  # Default to medium if not recognized
 
-    if not word_count:
-        article_length = word_count.keys(1)
-
     # Adjust the content strings with the provided values
     system_message = f"Your task is to generate an article on the topic: {topic}. Keywords: {keywords}. \
                       The article should be informative, engaging, and approximately {word_count} words long. \
@@ -41,7 +38,9 @@ def generate_article(topic, keywords, article_length):
     generated_content = []
     try:
         for chunk in response:
-            generated_content.append(chunk['choices'][0]['message']['content'])
+            # print(chunk)
+            if 'choices' in chunk and 'delta' in chunk['choices'][0]:
+                generated_content.append(chunk['choices'][0]['delta']['content'])
         return ' '.join(generated_content)
     except Exception as e:
         return f'There was an error generating your article: {e}. \

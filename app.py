@@ -26,8 +26,8 @@ from api.v1.views.dashboard import dashboard
 from api.v1.views.auth import auth
 
 # Register the blueprints
-app.register_blueprint(auth, url_prefix='/api/v1')
-app.register_blueprint(dashboard, url_prefix='/api/v1')
+app.register_blueprint(auth)
+app.register_blueprint(dashboard)
 
 @app.route('/')
 def landing_page():
