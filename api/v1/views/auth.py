@@ -35,9 +35,9 @@ def signup():
         existing_user = db.session.query(User).filter_by(email=email).first()
         if existing_user:
             flash('An account with this email already exists. Try logging in?')
-        elif not email and not password_hash and not firstname in request.form:
-            return render_template('signup_error.html',
-                                   message='You have not entered some credentials.')
+        elif not email and password_hash and firstname in request.form:
+            message = 'Missing credentials.'
+            flash(message)
         else:
             new_user = User(email=email,
                             password_hash=password_hash,
