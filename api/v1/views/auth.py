@@ -25,20 +25,22 @@ def signup():
         # Add extra layer of abstraction | email format and domain check
         if not validate_email(email, check_mx=False):
             flash('Invalid Credentials')
+            return render_template('signup.html')  # Add a return statement here
 
         password_hash = generate_password_hash(request.form['password'])
         firstname = request.form['firstname']
         lastname = request.form['lastname']
-
 
         # Check if the user already exists
         existing_user = db.session.query(User).filter_by(email=email).first()
         try:
             if existing_user:
                 flash('An account with this email already exists. Try logging in?')
-            elif not email and password_hash and firstname in request.form:
+                return render_template('signup.html')  # Add a return statement here
+            elif not (email and password_hash and firstname in request.form):  # Fixed the condition
                 message = 'Missing credentials.'
                 flash(message)
+                return render_template('signup.html')  # Add a return statement here
             else:
                 new_user = User(email=email,
                                 password_hash=password_hash,
@@ -47,9 +49,14 @@ def signup():
                                 articles=None)
                 db.session.add(new_user)
                 db.session.commit()
-                redirect(url_for('login.html', message='Account created successfully!'))
-        except Exception:
-            db.session.rollback() # rollback the entire operation is anything fails
+                return redirect(url_for('login'))
+        except Exception as e:
+            print(f"Exception: {e}")
+            db.session.rollback()
+            flash('There was a problem creating your account. Try again.')
+            return render_template('signup.html')
+
+
 
 
 @auth.route('/login', methods=['GET', 'POST'], strict_slashes=False)
