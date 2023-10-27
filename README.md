@@ -24,7 +24,7 @@ AIrticle is an innovative web application designed to harness the capabilities o
 ## ✨ Getting Started
 
 > **System Dependencies**
-- Python 3.11.5
+- Python 3.11.6
 - PostgreSQL 16.0
 
 > **Step 1** - Clone the repository
@@ -49,6 +49,27 @@ $ flask run --debug
 - `DATABASE_URL`: Your PostgreSQL Database URL.
 
 Visit `http://localhost:5000` in your browser. The app should be up & running.
+
+> [**Database Setup and Connection**](https://www.devart.com/dbforge/postgresql/how-to-install-postgresql-on-linux/)
+
+- Check is databse is running
+  ```
+  sudo systemctl status postgresql.service
+  ```
+  If not then start it:
+  ```
+  sudo systemctl start postgresql.service
+  ```
+  follow the rest supposing youve set up postgresql already
+  ```
+  sudo -i -u postgres
+  psql airticle
+  \dt
+  \d
+  \d user
+  SELECT * FROM "user";
+  
+  ```
 
 ## ✨ Features
 
