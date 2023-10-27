@@ -5,7 +5,7 @@
     - User Dashboard Session
 """
 from validate_email import validate_email
-from flask import flash, render_template, session, request
+from flask import flash, render_template, url_for, redirect, session, request
 # from flask_login import logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from models.user import User
@@ -33,20 +33,23 @@ def signup():
 
         # Check if the user already exists
         existing_user = db.session.query(User).filter_by(email=email).first()
-        if existing_user:
-            flash('An account with this email already exists. Try logging in?')
-        elif not email and password_hash and firstname in request.form:
-            message = 'Missing credentials.'
-            flash(message)
-        else:
-            new_user = User(email=email,
-                            password_hash=password_hash,
-                            firstname=firstname,
-                            lastname=lastname,
-                            articles=None)
-            db.session.add(new_user)
-            db.session.commit()
-            return render_template('login.html', message='Account created successfully!')
+        try:
+            if existing_user:
+                flash('An account with this email already exists. Try logging in?')
+            elif not email and password_hash and firstname in request.form:
+                message = 'Missing credentials.'
+                flash(message)
+            else:
+                new_user = User(email=email,
+                                password_hash=password_hash,
+                                firstname=firstname,
+                                lastname=lastname,
+                                articles=None)
+                db.session.add(new_user)
+                db.session.commit()
+                redirect(url_for('login.html', message='Account created successfully!'))
+        except Exception:
+            db.session.rollback() # rollback the entire operation is anything fails
 
 
 @auth.route('/login', methods=['GET', 'POST'], strict_slashes=False)
@@ -66,7 +69,7 @@ def login():
             flash('Incorrect password. Please try again!')
         else:
             session['user_id'] = user.id  # Storing user id in session
-            return render_template('dashboard.html', message=f'Welcome {user.firstname}')
+            redirect(url_for('dashboard.html', message=f'Welcome {user.firstname}'))
 
 
 @auth.route('/logout', methods=['GET', 'POST'], strict_slashes=False)
