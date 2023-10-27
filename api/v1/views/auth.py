@@ -23,7 +23,7 @@ def signup():
         email = request.form['email']
 
         # Add extra layer of abstraction | email format and domain check
-        if not validate_email(email, check_mx=True):
+        if not validate_email(email, check_mx=False):
             flash('Invalid Credentials')
 
         password_hash = generate_password_hash(request.form['password'])
