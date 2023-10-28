@@ -87,7 +87,7 @@ def username():
     """Query user's firstname"""
     if 'user_id' in session:
         user_id = session['user_id']
-        user = db.session.query(User).filter_by(User.id==user_id).first()
+        user = db.session.query(User).filter(User.id == user_id).first()
         if user:
             return jsonify({'username', user.firstname}), 200
         else:
