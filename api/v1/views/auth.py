@@ -6,8 +6,8 @@
 """
 from validate_email import validate_email
 from flask import flash, render_template, url_for, redirect, session, request
-# from flask_login import logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask import jsonify
 from models.user import User
 from database import db
 
@@ -20,41 +20,35 @@ auth = Blueprint('auth', __name__, url_prefix='/auth')
 def signup():
     """Signup logic"""
     if request.method == 'POST':
-        email = request.form['email']
+        email = request.form.get('email')
 
-        # Add extra layer of abstraction | email format and domain check
         if not validate_email(email, check_mx=False):
-            flash('Invalid Credentials')
-            return render_template('signup.html')  # Add a return statement here
+            return jsonify({'message': 'Invalid Credentials', 'status': 'error'})
 
-        password_hash = generate_password_hash(request.form['password'])
-        firstname = request.form['firstname']
-        lastname = request.form['lastname']
+        password_hash = generate_password_hash(request.form.get('password'))
+        firstname = request.form.get('firstname')
+        lastname = request.form.get('lastname')
 
-        # Check if the user already exists
         existing_user = db.session.query(User).filter_by(email=email).first()
         try:
             if existing_user:
-                flash('An account with this email already exists. Try logging in?')
-                return render_template('signup.html')  # Add a return statement here
-            elif not (email and password_hash and firstname in request.form):  # Fixed the condition
-                message = 'Missing credentials.'
-                flash(message)
-                return render_template('signup.html')  # Add a return statement here
+                return jsonify({'message': 'An account with this email already exists. Try logging in?', 'status': 'error'})
+            elif not email or not password_hash or not firstname:
+                return jsonify({'message': 'Missing credentials.', 'status': 'error'})
             else:
                 new_user = User(email=email,
                                 password_hash=password_hash,
                                 firstname=firstname,
                                 lastname=lastname,
-                                articles=None)
+                                articles=[])
                 db.session.add(new_user)
                 db.session.commit()
-                return redirect(url_for('login'))
+                return jsonify({'message': 'Account created successfully. Redirecting to login.', 'status': 'success'})
         except Exception as e:
             print(f"Exception: {e}")
             db.session.rollback()
-            flash('There was a problem creating your account. Try again.')
-            return render_template('signup.html')
+            return jsonify({'message': 'There was a problem creating your account. Try again.', 'status': 'error'})
+
 
 
 
@@ -63,8 +57,8 @@ def signup():
 def login():
     """Login Logic"""
     if request.method == 'POST':
-        email = request.form['email']
-        password = request.form['password']  # No need to hash it here
+        email = request.form.get('email')
+        password = request.form.get('password')  # No need to hash it here
 
         # Fetch user by email
         user = db.session.query(User).filter_by(email=email).first()

@@ -16,8 +16,8 @@ body {
 }
 
 .container {
-    left: 30%;
-    top: 30%;
+    left: 20%;
+    top: 20%;
     height: 590px;
     display: flex;
     flex-direction: column;

@@ -4,10 +4,16 @@
     <meta charset="UTF-8" />
     <title>Sign up | AIrticle</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
+
+    <!-- JQuery import and important scrips-->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/signup.js') }}"></script>
 </head>
 <body>
     <!-- Display flash messages -->
-    <div class="flash-container">
+    <div class="flash-container"></div>
+
+    <!-- <div class="flash-container">
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 <ul class="flash-messages">
@@ -17,9 +23,9 @@
                 </ul>
             {% endif %}
         {% endwith %}
-    </div>
+    </div> -->
 
-    <form class="container" id="card" method="post" action="{{ url_for('auth.signup') }}">
+    <form class="container" id="card">
         <div class="logo-container">
             <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo">
         </div>
