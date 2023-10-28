@@ -58,15 +58,17 @@ def login():
         password = request.form.get('password')
 
         user = db.session.query(User).filter_by(email=email).first()
-        hash = generate_password_hash(password)
+        # print("Stored Hash:", user.password_hash)
+        # print("Plain-text Password:", password)
 
         if not user:
             return jsonify({'message': 'Oops, Looks like you do not have an account. Kindly create one.', 'status': 'error'})
-        elif not check_password_hash(user.password_hash, hash):
+        elif not check_password_hash(user.password_hash, password):  # Directly use the plain-text password here
             return jsonify({'message': 'Incorrect password. Please try again!', 'status': 'error'})
         else:
             session['user_id'] = user.id  # Storing user id in session
             return jsonify({'message': f'Welcome {user.firstname}', 'status': 'success'})
+
 
 
 @auth.route('/logout', methods=['GET', 'POST'], strict_slashes=False)
