@@ -1,10 +1,17 @@
-// $(document).ready(function () {
-//     // Header profile dropdown functionality
-//     let ('.dropdown').css('dropdown-content', 'hidden');
-//     $('.dropdown').on('click', function (e) {
-//         (this).css('dropdown-content', 'block');
-//     });
-// });
+// Display username
+$(document).ready(function(){
+    $.ajax({
+        url: '/auth/get_username',
+        type: 'GET',
+        success: function(response) {
+            let username = response.username;
+            $('#usernameButton').append(username);
+        },
+        error: function(error) {
+            console.log("Error fetching username:", error);
+        }
+    });
+});
 
 // FORMAT RESPONSE
 function formatContent(content) {

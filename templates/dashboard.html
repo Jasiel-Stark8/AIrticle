@@ -18,15 +18,17 @@
   <h1 class="logo">AIRTICLE</h1>
   <div class="profile">
       <div class="dropdown">
-          <button> <img src="{{ url_for('static', filename='profile-pic.jpg') }}" class="profile-pic">Jason Quist</button>
+          <!-- Username will go here -->
+          <button id="usernameButton"> <img src="{{ url_for('static', filename='profile-pic.jpg') }}" class="profile-pic"> </button>
           <div class="dropdown-content">
               <a href="#"> Updates & FAQs </a>
               <a href="#"> Switch Theme </a>
-              <a href="#" style="color: red;"> Log out </a>
+              <a href="{{ url_for('auth.login') }}" style="color: red;"> Log out </a>
           </div>
       </div>
   </div>
 </nav>
+
 
 <div class="main-container">
 
