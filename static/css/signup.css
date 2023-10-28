@@ -29,8 +29,13 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 450px;
+    justify-content: center;
+    align-items: center;
 }
 
+a {
+  text-decoration: none;
+}
 
 /* If you want to add some animation to make the form appear smoothly */
 .container {
@@ -312,4 +317,26 @@ body {
   .glowing-btn{
     font-size: 1em;
   }
+}
+
+/* ============================================================ */
+/* FLASH MESSAGE */
+.flash-container {
+  width: auto; /* Adjusts the width based on content */
+  max-width: 80%; /* Ensures it doesn't take the entire width */
+  text-align: center;
+  padding: 10px 20px; /* Added horizontal padding for better aesthetics */
+  margin: 20px; /* Margin from the top-left of the screen */
+  position: fixed; /* Makes the flash messages appear at the top */
+  top: 0;
+  left: 0;
+  z-index: 9999; /* Ensures it's above other content */
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+  color: aqua; /* Neon aqua text color */
+  font-weight: bold;
+  border-radius: 5px;
+
+  /* Neon glow effect */
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 15px #ff00ff, 0 0 20px #ff00ff, 0 0 25px #ff00ff, 0 0 30px #ff00ff, 0 0 35px #ff00ff;
+  box-shadow: 0px 0px 10px rgba(0, 255, 255, 0.9); /* Aqua glow around the container */
 }

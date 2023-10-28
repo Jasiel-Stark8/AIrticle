@@ -13,18 +13,6 @@
     <!-- Display flash messages -->
     <div class="flash-container"></div>
 
-    <!-- <div class="flash-container">
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                <ul class="flash-messages">
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-                </ul>
-            {% endif %}
-        {% endwith %}
-    </div> -->
-
     <form class="container" id="card">
         <div class="logo-container">
             <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo">
