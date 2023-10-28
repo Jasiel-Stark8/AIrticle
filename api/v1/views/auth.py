@@ -2,7 +2,7 @@
     - Signup
     - Login
     - Logout
-    - User Dashboard Session
+    - User generate Session
 """
 from validate_email import validate_email
 from flask import flash, render_template, url_for, redirect, session, request, Blueprint
@@ -23,10 +23,10 @@ def is_authenticated():
 
 @auth.before_request
 def require_login():
-    protected_routes = ['/dashboard']
+    protected_routes = ['/generate']
     if request.path in protected_routes and not is_authenticated():
-        flash('Kindly login to access dashboard')
-        return redirect(url_for('auth.login')), 200
+        flash('Kindly login to access generate')
+        return redirect(url_for('auth.login'))
 
 
 @auth.route('/signup', methods=['GET', 'POST'], strict_slashes=False)
@@ -36,7 +36,7 @@ def signup():
         email = request.form.get('email')
 
         if not validate_email(email, check_mx=False):
-            return jsonify({'message': 'Invalid Credentials', 'status': 'error'}), 400
+            return jsonify({'message': 'Invalid Credentials', 'status': 'error'})
 
         password_hash = generate_password_hash(request.form.get('password'))
         firstname = request.form.get('firstname')
@@ -45,9 +45,9 @@ def signup():
         existing_user = db.session.query(User).filter_by(email=email).first()
         try:
             if existing_user:
-                return jsonify({'message': 'An account with this email already exists. Try logging in?', 'status': 'error'}), 400
+                return jsonify({'message': 'An account with this email already exists. Try logging in?', 'status': 'error'})
             elif not email or not password_hash or not firstname:
-                return jsonify({'message': 'Missing credentials.', 'status': 'error'}), 400
+                return jsonify({'message': 'Missing credentials.', 'status': 'error'})
             else:
                 new_user = User(email=email,
                                 password_hash=password_hash,
@@ -56,11 +56,11 @@ def signup():
                                 articles=[])
                 db.session.add(new_user)
                 db.session.commit()
-                return jsonify({'message': 'Account created successfully. Redirecting to login.', 'status': 'success'}), 400
+                return jsonify({'message': 'Account created successfully. Redirecting to login.', 'status': 'success'})
         except Exception as e:
             print(f"Exception: {e}")
             db.session.rollback()
-            return jsonify({'message': 'There was a problem creating your account. Try again.', 'status': 'error'}), 500
+            return jsonify({'message': 'There was a problem creating your account. Try again.', 'status': 'error'})
 
 
 @auth.route('/login', methods=['GET', 'POST'], strict_slashes=False)
@@ -73,12 +73,12 @@ def login():
         user = db.session.query(User).filter_by(email=email).first()
 
         if not user:
-            return jsonify({'message': 'Oops, Looks like you do not have an account. Kindly create one.', 'status': 'error'}), 400
+            return jsonify({'message': 'Oops, Looks like you do not have an account. Kindly create one.', 'status': 'error'})
         elif not check_password_hash(user.password_hash, password):
-            return jsonify({'message': 'Incorrect password. Please try again!', 'status': 'error'}), 400
+            return jsonify({'message': 'Incorrect password. Please try again!', 'status': 'error'})
         else:
             session['user_id'] = user.id  # Storing user id in session
-            return jsonify({'message': f'Welcome {user.firstname}', 'status': 'success'}), 200
+            return jsonify({'message': f'Welcome {user.firstname}', 'status': 'success'})
     return render_template('login.html')
 
 
@@ -89,10 +89,11 @@ def username():
         user_id = session['user_id']
         user = db.session.query(User).filter(User.id == user_id).first()
         if user:
-            return jsonify({'username', user.firstname}), 200
+            return jsonify({'username': user.firstname})
         else:
-            return jsonify({'error': 'User not found'}), 404
-    return jsonify({'error': 'User not authenticated'}), 401
+            return jsonify({'error': 'User not found'})
+    return jsonify({'error': 'User not authenticated'})
+
 
 @auth.route('/logout', methods=['GET', 'POST'], strict_slashes=False)
 def logout():

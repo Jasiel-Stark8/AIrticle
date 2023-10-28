@@ -15,7 +15,7 @@ $(document).ready(function() {
 
             if(response.status === 'success') {
                 setTimeout(function() {})
-                window.location.href = '/dashboard';
+                window.location.href = '/generate';
             } 3000;
         }).fail(function(err) {
             console.log(err);

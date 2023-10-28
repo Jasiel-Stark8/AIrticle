@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AIrticle | Dashboard </title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/generate.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
 
     <!-- JQuery import and important scrips-->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/generate.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+
 </head>
 <body>
 
@@ -19,7 +22,9 @@
   <div class="profile">
       <div class="dropdown">
           <!-- Username will go here -->
-          <button id="usernameButton"> <img src="{{ url_for('static', filename='profile-pic.jpg') }}" class="profile-pic"> </button>
+          <button id="usernameButton">
+            <!-- <img src="{{ url_for('static', filename='profile-pic.jpg') }}" class="profile-pic"> -->
+          </button>
           <div class="dropdown-content">
               <a href="#"> Updates & FAQs </a>
               <a href="#"> Switch Theme </a>

@@ -1,4 +1,4 @@
-"""Dashboard view logic:
+"""generate view logic:
 - Send topic and keywords from client to GPT-3.5-turbo
 - Generate content
 
@@ -24,7 +24,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # BLUEPRINT
 from flask import Blueprint
-dashboard = Blueprint('dashboard', __name__)
+generate = Blueprint('generate', __name__)
 
 UPLOAD_FOLDER = 'exports/'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'docx', 'md'}
@@ -58,7 +58,7 @@ def generate_article(topic, keywords, article_length):
     generated_content = response.choices[0].message['content'].strip()
     return generated_content or 'Failed to generate an article.'
 
-@dashboard.route('/generate', methods=['POST'])
+@generate.route('/generate', methods=['POST'])
 def generate_content():
     """Get article parameters from client to feed to GPT"""
     topic = request.form.get('topic')
@@ -71,7 +71,7 @@ def generate_content():
         response = jsonify({'generated_article': generated_article})
         return response
     else:
-        return render_template('dashboard.html', generated_article="Failed to generate an article.")
+        return render_template('generate.html', generated_article="Failed to generate an article.")
 
 
 # ======================== Export Article Logic ========================
@@ -80,7 +80,7 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-@dashboard.route('/export', methods=['POST'], strict_slashes=False)
+@generate.route('/export', methods=['POST'], strict_slashes=False)
 def export_content():
     """Export the content to desired format"""
     content = request.form['content']
@@ -138,7 +138,7 @@ def export_markdown(content, topic):
     return filename
 
 
-@dashboard.route('/save_article', methods=['POST'], strict_slashes=False)
+@generate.route('/save_article', methods=['POST'], strict_slashes=False)
 def save_article():
     """Save article to database"""
     user_id = session.get('user_id')
@@ -164,7 +164,7 @@ def save_article():
     #     return "Problem saving article, click save again", 400
 
 
-@dashboard.route('/new_article', methods=['POST'], strict_slashes=False)
+@generate.route('/new_article', methods=['POST'], strict_slashes=False)
 def create_new_article():
     """Create new article"""
-    return render_template('dashboard.html')
+    return render_template('generate.html')

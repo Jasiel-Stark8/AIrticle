@@ -8,6 +8,8 @@
 body {
     font-family: 'Arial', sans-serif;
     height: 100vh;
+    background: linear-gradient(to bottom right, teal, grey);
+    background-attachment: fixed;
 }
 
 
@@ -101,6 +103,24 @@ margin-right: 10px;
 /* ======================================== */
 
 /* Content Area */
+
+/* NEW CHAT */
+.new-chat {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 40%;
+}
+
+#intro-text {
+  font-size: 1.5em;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
 /* LEFT SECTION */
 .left_section {
     width: 50%;
@@ -109,6 +129,10 @@ margin-right: 10px;
     border-right: 1px solid #eee;
 }
 
+.article-input input:focus {
+  transition: box-shadow 0.3s ease-out;
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+}
 
 .article-input {
     margin-bottom: 20px;
@@ -125,8 +149,72 @@ margin-right: 10px;
 .article-input input:hover,
 .article-input input:focus {
     border-color: #007BFF;
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
 }
 /* ======================================== */
+
+/* SPACING AND POSITIONING */
+.article-input input, .new-chat, select {
+  margin-bottom: 20px;
+}
+
+.new-chat:hover {
+  transition: transform 0.3s ease-out;
+  transform: scale(1.1);
+}
+
+
+/* ARTICLE LENGTH DROPDOWN */
+.aritcle-length {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 10px 15px;
+  color: #fff;
+  font-weight: 500;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.aritcle-length:focus {
+  box-shadow: 0 0 0 3px rgba(0, 128, 128, 0.6);
+  transform: scale(1.02);
+}
+
+@keyframes fadeInDown {
+  from {
+      opacity: 0;
+      transform: translateY(-20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+.my-choices-container-inner {
+  animation: fadeInDown 0.3s forwards;
+}
+
+
+.aritcle-length option {
+  background-color: rgba(0, 128, 128, 0.3); /* A translucent teal background */
+  color: #fff; /* White text */
+  padding: 8px 12px; /* A bit of padding for aesthetics */
+}
+
+.aritcle-length option:checked, .aritcle-length option:hover {
+  background-color: rgba(0, 128, 128, 0.6); /* A slightly darker translucent teal on hover/selection */
+}
+
+
+.aritcle-length:hover {
+  background: rgba(255, 255, 255, 0.2); /* Darker on hover */
+}
+
+
+
 
 /* RIGHT SECTION */
 
@@ -144,6 +232,7 @@ margin-right: 10px;
     border-radius: 4px;
     overflow-y: auto;
     position: relative;
+    background-color: #f9f9f9;
 }
 
 .article-display:empty::before {
@@ -151,6 +240,7 @@ margin-right: 10px;
     color: #aaa;
     font-style: italic;
     pointer-events: none;
+    font-size: 1.2em;
 }
 
 /* ======================================================================================================== */

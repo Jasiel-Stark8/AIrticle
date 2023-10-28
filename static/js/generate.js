@@ -5,7 +5,7 @@ $(document).ready(function(){
         type: 'GET',
         success: function(response) {
             let username = response.username;
-            $('#usernameButton').append(username);
+            $('#usernameButton').append(`Hi ${username} 👋`);
         },
         error: function(error) {
             console.log("Error fetching username:", error);
@@ -88,3 +88,17 @@ $(document).ready(function(){
       });
     });
   });
+
+
+//   Page animations
+const element = document.querySelector('.aritcle-length');
+const choices = new Choices(element, {
+    animationDuration: 200, // length of the animation in ms
+    shouldSort: false,
+    classNames: {
+        containerOuter: 'choices',
+        containerInner: 'choices__inner my-choices-container-inner',
+        item: 'choices__item my-choices-item',
+        choice: 'choices__choice my-choices-choice',
+    }
+});

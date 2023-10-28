@@ -22,12 +22,12 @@ db.init_app(app)
 
 # Move the imports here, after the app and db are set up
 from models import user
-from api.v1.views.dashboard import dashboard
+from api.v1.views.generate import generate
 from api.v1.views.auth import auth
 
 # Register the blueprints
 app.register_blueprint(auth)
-app.register_blueprint(dashboard)
+app.register_blueprint(generate)
 
 @app.route('/')
 def landing_page():
@@ -47,10 +47,10 @@ def login_page():
     return render_template('login.html')
 
 
-@app.route('/dashboard')
+@app.route('/generate')
 def home():
-    """Home Page - Dashboard"""
-    return render_template('dashboard.html')
+    """Home Page - generate"""
+    return render_template('generate.html')
 
 if __name__ == '__main__':
     app.run(debug=True, host='localhost', port=5002)
