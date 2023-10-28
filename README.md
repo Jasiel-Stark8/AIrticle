@@ -83,40 +83,45 @@ A commercialized version of this app will be available, allowing users without a
 
 ## ✨ Code-base Structure
 
-```bash
-📂 AIrticle/
-│
-├── 📂 templates/
-│   ├── 📄 landing.html            # Landing page of the application
-│   ├── 📄 login.html             # User login form
-│   ├── 📄 register.html          # New user registration form
-│   └── 📄 dashboard.html         # Main dashboard for users to manage their articles
-│
-├── 📂 static/
-│   ├── 📂 css/
-│   │   └── 📄 style.css           # Global styles for the application
-│   ├── 📂 js/
-│   │   ├── 📄 scripts.js          # General scripts used across different pages
-│   │   └── 📄 dashboard.js        # Scripts specific to dashboard functionalities
-│   └── 📂 images/                # Holds image assets used in the application
-│
-├── 📂 models/
-│   ├── 📄 user.py                # Defines User model and related functions
-│   ├── 📄 article.py             # Defines Article model and related functions
-│   └── 📄 autosave.py            # Defines Autosave model and related functionality
-│
-├── 📂 api/
-│   ├── 📂 v1/
-│   │   ├── 📄 auth.py                # Handles authentication routes (login, register)
-│   │   └── 📄 articles.py            # Routes related to dashboard functionalities and articles
-│   │   └── 📄 autosave.py            # Routes related to autosave functionalities
-│
-├── 📄 app.py                    # Main application initialization and configuration
-├── 📄 config.py                 # Configuration settings for the application
-├── 📄 requirements.txt          # Required Python packages for the project
-├── 📄 README.md                 # Project documentation and setup guide
-├── 📄 .env                      # Environment variables (keep private!)
-└── 📄 .gitignore                # List of files/folders to ignore in version control
+```bash.
+├── AIrticle.png
+├── api
+│   ├── __init__.py
+│   └── v1
+│       ├── __init__.py
+│       └── views
+│           ├── auth.py
+│           ├── autosave.py
+│           ├── dashboard.py
+│           ├── gpt.py
+│           └── __init__.py
+├── app.py
+├── AUTHORS
+├── config.py
+├── exports
+├── LICENSE
+├── models
+│   ├── autosave.py
+│   ├── __init__.py
+│   ├── save_article.py
+│   └── user.py
+├── README.md
+├── requirements.txt
+├── static
+│   ├── css
+│   │   └── styles.css
+│   ├── images
+│   └── js
+│       ├── dashboard.js
+│       └── scripts.js
+├── templates
+│   ├── dashboard.html
+│   ├── landing.html
+│   ├── login.html
+│   └── signup.html
+└── tree
+
+11 directories, 26 files
 ```
 
 ## API Endopints
