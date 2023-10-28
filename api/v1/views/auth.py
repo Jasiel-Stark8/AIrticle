@@ -50,27 +50,23 @@ def signup():
             return jsonify({'message': 'There was a problem creating your account. Try again.', 'status': 'error'})
 
 
-
-
-
 @auth.route('/login', methods=['GET', 'POST'], strict_slashes=False)
 def login():
     """Login Logic"""
     if request.method == 'POST':
         email = request.form.get('email')
-        password = request.form.get('password')  # No need to hash it here
+        password = request.form.get('password')
 
-        # Fetch user by email
         user = db.session.query(User).filter_by(email=email).first()
+        hash = generate_password_hash(password)
 
-        # If user doesn't exist, or password does not match
         if not user:
-            flash('Oops, Looks like you do not have an account. Kindly create one.')
-        elif not check_password_hash(user.password_hash, password):
-            flash('Incorrect password. Please try again!')
+            return jsonify({'message': 'Oops, Looks like you do not have an account. Kindly create one.', 'status': 'error'})
+        elif not check_password_hash(user.password_hash, hash):
+            return jsonify({'message': 'Incorrect password. Please try again!', 'status': 'error'})
         else:
             session['user_id'] = user.id  # Storing user id in session
-            redirect(url_for('dashboard.html', message=f'Welcome {user.firstname}'))
+            return jsonify({'message': f'Welcome {user.firstname}', 'status': 'success'})
 
 
 @auth.route('/logout', methods=['GET', 'POST'], strict_slashes=False)
