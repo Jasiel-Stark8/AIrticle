@@ -40,9 +40,16 @@ def generate_article(topic, keywords, article_length):
         'long': '2000'
     }.get(article_length, '1000')
 
-    system_message = f"Your task is to generate an article on the topic: {topic}. Keywords: {', '.join(keywords)}. \
-                      The article should be informative, engaging, and approximately {word_count} words long. \
-                      Please include an introduction, main body, and conclusion."
+    system_message = (f"Your task is to generate an article on the topic: {topic}. "
+          f"Keywords: {', '.join(keywords)}. The article should be informative, engaging, "
+          f"and approximately {word_count} words long. "
+          "You must include the following components:\n\n"
+          "- A captivating title\n"
+          "- An introduction that provides an overview of the topic\n"
+          "- A main body, structured with relevant subtopics based on the provided keywords. Do not add explicitly 'Main Body' in your response"
+          "Each subtopic should be discussed in detail and do not number them. put the detailed discussion of each point under the point itslef.\n"
+          "- A conclusion summarizing the key points and any final thoughts.\n\n"
+          "Ensure that the content flows seamlessly and maintains the reader's interest throughout, and stick to the word length. your points are not limited to the keywords")
     user_message = f"{topic} {', '.join(keywords)}"
 
     # Uncomment and modify this when you're using the OpenAI API
