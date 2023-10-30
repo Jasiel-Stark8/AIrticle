@@ -123,6 +123,7 @@ margin-right: 10px;
 
 /* LEFT SECTION */
 .left_section {
+  height: 100%;
     width: 50%;
     float: left;
     padding: 20px;
@@ -219,6 +220,7 @@ margin-right: 10px;
 /* RIGHT SECTION */
 
 .right_section {
+  height: 100%;
     width: 50%;
     float: right;
     padding: 20px;
