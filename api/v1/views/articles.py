@@ -4,3 +4,4 @@
 """
 from flask_sqlalchemy import SQLAlchemy
 from models.save_article import Article
+

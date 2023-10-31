@@ -4,7 +4,7 @@ from database import db
 
 class User(db.Model):
     """User Schema"""
-    __tablename__ = 'user'
+    __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     email = db.Column(db.String(40), nullable=False, unique=True)
     password_hash = db.Column(db.String(255), nullable=False)
