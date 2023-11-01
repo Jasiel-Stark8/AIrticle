@@ -10,9 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
 
     <!-- Our project just needs Font Awesome Free's Solid and Brand files -->
-    <link href="{{ url_for('static', filename='fontawesomefree/css/fontawesome.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ url_for('static', filename='fontawesomefree/css/brands.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ url_for('static', filename='fontawesomefree/css/solid.css') }}" rel="stylesheet" type="text/css">
+    <script src="https://kit.fontawesome.com/c2cf2f5d94.js" crossorigin="anonymous"></script>
 
     <!-- JQuery import and important scrips-->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -64,7 +62,7 @@
           </select>
       </div>
 
-      <button type="submit"><i class="fa-regular fa-jet-fighter">GENERATE</i> </button>
+      <button type="submit">GENERATE<i class="fa-solid fa-jet-fighter"></i></button>
   </form>
 
   <section class="right_section">
@@ -79,14 +77,14 @@
         <div>L</div>
       </div>
       <p></p>
-      <!-- Fontawesome icons { Edit | Save | Copy | Export } -->
-      <ul>
-        <i class="fa-regular fa-pen-to-square"></i>
-        <i class="fa-regular fa-bookmark"></i>
-        <i class="fa-solid fa-clipboard"></i>
-        <i class="fa-regular fa-file-export"></i>
-      </ul>
+      <!-- Fontawesome icons { Edit | Save | Copy | Export } mUST BE ALIGNED HORIZONTALLY AS IS NOW AND DESIGNED WELL WITH TOOLTIPS-->
     </div>
+    <ul>
+      <i class="fa-regular fa-pen-to-square group-icon" data-tootip="Edit Article"></i>
+      <i class="fa-regular fa-bookmark group-icon" data-tootip="Save Article"></i>
+      <i class="fa-solid fa-clipboard group-icon" data-tootip="Copy Article"></i>
+      <i class="fa-solid fa-file-export group-icon" data-tootip="Export Article"></i>
+    </ul>
   </section>  
   
 </div>

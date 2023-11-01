@@ -441,4 +441,95 @@ margin-right: 10px;
   input {
     animation: glowing 1.5s infinite alternate;
   }
-  
+
+  /* ICONS */
+/* GENERAL STYLES */
+body {
+  font-family: 'Arial', sans-serif;
+  color: #fff;
+}
+
+button, ul {
+  border: none;
+  outline: none;
+}
+
+/* GENERATE BUTTON STYLES */
+button {
+  background-color: #35a79c;
+  border-radius: 20px;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #1f7a6d;
+}
+
+button i {
+  margin-left: 5px;
+}
+
+/* ICON STYLES */
+ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  gap: 15px;
+}
+
+ul i {
+  cursor: pointer;
+  font-size: 1.5em;
+  transition: transform 0.3s ease-in-out;
+}
+
+ul i:hover {
+  transform: scale(1.1);
+}
+
+/* Tooltips for icons */
+ul i[data-tooltip]:hover:after {
+  content: attr(data-tooltip);
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 0.9em;
+  pointer-events: none;
+  margin-top: 5px;
+}
+
+/* Assigning tooltips to icons */
+.fa-pen-to-square::after {
+  content: 'Edit';
+}
+
+.fa-bookmark::after {
+  content: 'Save';
+}
+
+.fa-clipboard::after {
+  content: 'Copy';
+}
+
+.fa-file-export::after {
+  content: 'Export';
+}
+
+.group-icon {
+  border: 1.5px solid #6dcfa6;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  height: 40;
+  width: 90px;
+}
