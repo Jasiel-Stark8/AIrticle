@@ -9,7 +9,7 @@ Exports:
 import os
 import openai
 from dotenv import load_dotenv
-from flask import Flask, render_template, request, abort, session, jsonify
+from flask import Flask, render_template, request, jsonify
 from database import db
 
 load_dotenv()

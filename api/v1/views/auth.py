@@ -9,6 +9,7 @@ from flask import flash, render_template, url_for, redirect, session, request, B
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import jsonify
 from models.user import User
+from models.article import Article
 from database import db
 
 # BLUEPRINT
@@ -52,8 +53,8 @@ def signup():
                 new_user = User(email=email,
                                 password_hash=password_hash,
                                 firstname=firstname,
-                                lastname=lastname,
-                                articles=[])
+                                lastname=lastname)
+
                 db.session.add(new_user)
                 db.session.commit()
                 return jsonify({'message': 'Account created successfully. Redirecting to login.', 'status': 'success'})

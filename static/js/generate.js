@@ -102,3 +102,33 @@ const choices = new Choices(element, {
         choice: 'choices__choice my-choices-choice',
     }
 });
+
+
+// Save article data from <p> to PostgreSQL database
+$('.fa-bookmark').on('click', function () {
+    let articleContent = $('#article-data').text();
+    let articleData = JSON.stringify({
+        content: articleContent
+    });
+
+    $.ajax({
+        url: '/save_article',
+        type: 'POST',
+        contentType: 'application/json',
+        data: articleData,
+    }).done(function (data) {
+        alert('Succesfuly Saved Article');
+    }).fail(function (err) {
+        console.error(err);
+        $('#error_messages').text('Failed to save article, kindly try again');
+    });
+});
+
+
+// Edit content
+$(document).ready(function(){
+    $('.fa-pen-to-square').on('click', function () {
+        $('.article-display').attr('contenteditable', 'true').focus();
+        alert('Ready to edit');
+    });
+});

@@ -5,10 +5,10 @@ with app.app_context():
     new_user = User(email="example@email.com", password_hash="somehashedpassword", firstname="John", lastname="Doe")
     db.session.add(new_user)
     db.session.commit()
-... 
+...
 >>>
 
-from models.save_article import Article
+from models.article import Article
 from app import app, db
 with app.app_context():
     db.create_all()

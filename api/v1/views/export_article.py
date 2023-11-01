@@ -1,12 +1,25 @@
 """Export Article Logic"""
+import os
+import markdown
+from flask import Blueprint, request, send_from_directory
+from docx import Document
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
+from werkzeug.utils import secure_filename
+from app import app
 
+
+export = Blueprint('export', __name__)
+
+UPLOAD_FOLDER = 'exports/'
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'docx', 'md'}
 
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-@generate.route('/export', methods=['POST'], strict_slashes=False)
+@export.route('/export', methods=['POST'], strict_slashes=False)
 def export_content():
     """Export the content to desired format"""
     content = request.form['content']
@@ -50,7 +63,7 @@ def export_pdf(content, topic):
 def export_txt(content, topic):
     """Export content as Txt"""
     filename = secure_filename(f"{topic}.txt")
-    with open(os.path.join(app.config['UPLOAD_FOLDER'], filename), 'w') as f:
+    with open(os.path.join(app.config['UPLOAD_FOLDER'], filename), 'w', encoding='utf8') as f:
         f.write(content)
     return filename
 
@@ -58,7 +71,7 @@ def export_txt(content, topic):
 def export_markdown(content, topic):
     """Export content as Markdown"""
     filename = secure_filename(f"{topic}.md")
-    with open(os.path.join(app.config['UPLOAD_FOLDER'], filename), 'w') as f:
+    with open(os.path.join(app.config['UPLOAD_FOLDER'], filename), 'w', encoding='utf8') as f:
         f.write(f"#{topic}\n\n")
         f.write(content)
     return filename
