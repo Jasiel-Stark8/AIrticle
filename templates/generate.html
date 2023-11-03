@@ -44,7 +44,7 @@
 
   <!-- LEFT SECTION -->
   <form class="left_section" id="generate-article-form">
-      <button class="new-chat"> + New Article </button> <p id="error_messages"></p>
+      <button class="new-chat"> + New Article </button> <p id="flash_container"></p>
       <h2 id="intro-text"> Where AI meets content ✨ </h2>
       <div class="article-input">
 
@@ -76,16 +76,17 @@
         <div>O</div>
         <div>L</div>
       </div>
-      <p id="article-data"></p>
-      <!-- Fontawesome icons { Edit | Save | Copy | Export } mUST BE ALIGNED HORIZONTALLY AS IS NOW AND DESIGNED WELL WITH TOOLTIPS-->
+      <span id="article-data"></span>
+      <p></p>
+      <!-- Fontawesome icons { Edit | Save | Copy | Export } -->
     </div>
     <ul>
-      <i class="fa-regular fa-pen-to-square group-icon" data-tooltip="Edit Article"></i>
-      <i class="fa-regular fa-bookmark group-icon" data-tooltip="Save Article"></i>
-      <i class="fa-solid fa-clipboard group-icon" data-tooltip="Copy Article"></i>
-      <i class="fa-solid fa-file-export group-icon" data-tooltip="Export Article"></i>
+      <button id="edit_article"><i class="fa-regular fa-pen-to-square" data-tooltip="Edit Article"></i></button>
+      <button id="save_article"><i class="fa-regular fa-bookmark" data-tooltip="Save Article"></i></button>
+      <button id="copy_article"><i class="fa-solid fa-clipboard" data-tooltip="Copy Article"></i></button>
+      <button id="export_article"><i class="fa-solid fa-file-export" data-tooltip="Export Article"></i></button>
     </ul>
-  </section>  
+  </section>
   
 </div>
 

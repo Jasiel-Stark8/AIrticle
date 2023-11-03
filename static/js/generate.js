@@ -93,7 +93,7 @@ $(document).ready(function(){
 //   Page animations
 const element = document.querySelector('.aritcle-length');
 const choices = new Choices(element, {
-    animationDuration: 200, // length of the animation in ms
+    animationDuration: 5000, // length of the animation in ms
     shouldSort: false,
     classNames: {
         containerOuter: 'choices',
@@ -105,30 +105,46 @@ const choices = new Choices(element, {
 
 
 // Save article data from <p> to PostgreSQL database
-$('.fa-bookmark').on('click', function () {
-    let articleContent = $('#article-data').text();
-    let articleData = JSON.stringify({
-        content: articleContent
-    });
+$(document).ready(function() {
+    $('.save_article').on('click', function () {
+        alert('Saved button clicked');
+        let topic = $('#article-data').text().split('.')[0];
+        let articleContent = $('#article-data').text();
+        let articleData = JSON.stringify({
+            topic: topic,
+            content: articleContent
+        });
 
-    $.ajax({
-        url: '/save_article',
-        type: 'POST',
-        contentType: 'application/json',
-        data: articleData,
-    }).done(function (data) {
-        alert('Succesfuly Saved Article');
-    }).fail(function (err) {
-        console.error(err);
-        $('#error_messages').text('Failed to save article, kindly try again');
+        $.ajax({
+            url: '/save_article',
+            type: 'POST',
+            contentType: 'application/json',
+            data: articleData,
+            dataType: 'json'
+        }).done(function (data) {
+            let successMessage = $('<div class="alert alert-success" role="alert">')
+                                    .text('Article Successfully Saved!');
+            $('.flash-container').empty().append(successMessage);
+        }).fail(function (err) {
+            let errorMsg = (err.responseJSON && err.responseJSON.message) ? err.responseJSON.message : 'Failed to save article, kindly try again';
+            let errorMessage = $('<div class="alert alert-danger" role="alert">')
+                                    .text(errorMsg);
+            $('.flash-container').empty().append(errorMessage);
+            console.error(errorMsg);
+        });
     });
 });
-
 
 // Edit content
-$(document).ready(function(){
-    $('.fa-pen-to-square').on('click', function () {
-        $('.article-display').attr('contenteditable', 'true').focus();
-        alert('Ready to edit');
-    });
-});
+window.onload = function() {
+    let edit = document.getElementById('edit_article');
+
+    edit.onclick = function(e) {
+        this.contentEditable = 'true';
+        this.focus(); // Focus the element to immediately allow editing
+    };
+
+    edit.onblur = function(e) {
+        this.contentEditable = 'false'; // Make sure to set this as a string
+    };
+};
