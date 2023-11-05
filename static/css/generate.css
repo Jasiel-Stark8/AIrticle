@@ -30,17 +30,6 @@ nav {
   letter-spacing: 1.5px;
 }
 
-button {
-   background-color: #007BFF; /* Blue, can be changed */
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
 /* New Dropdown Styles */
 
 .profile {
@@ -442,17 +431,7 @@ margin-right: 10px;
     animation: glowing 1.5s infinite alternate;
   }
 
-  /* ICONS */
-/* GENERAL STYLES */
-body {
-  font-family: 'Arial', sans-serif;
-  color: #fff;
-}
-
-button, ul {
-  border: none;
-  outline: none;
-}
+  /*======================================== ICONS ========================================*/
 
 /* GENERATE BUTTON STYLES */
 button {
@@ -489,40 +468,6 @@ ul i {
 
 ul i:hover {
   transform: scale(1.1);
-}
-
-/* Tooltips for icons */
-ul i[data-tooltip]:hover:after {
-  content: attr(data-tooltip);
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  border-radius: 5px;
-  padding: 5px;
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  font-size: 0.9em;
-  pointer-events: none;
-  margin-top: 5px;
-}
-
-/* Assigning tooltips to icons */
-.fa-pen-to-square::after {
-  content: 'Edit';
-}
-
-.fa-bookmark::after {
-  content: 'Save';
-}
-
-.fa-clipboard::after {
-  content: 'Copy';
-}
-
-.fa-file-export::after {
-  content: 'Export';
 }
 
 .group-icon {

@@ -15,6 +15,7 @@
     <!-- JQuery import and important scrips-->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="{{ url_for('static', filename='js/generate.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/gen_functionality.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
 </head>
@@ -80,14 +81,14 @@
       <p></p>
       <!-- Fontawesome icons { Edit | Save | Copy | Export } -->
     </div>
-    <ul>
-      <button id="edit_article"><i class="fa-regular fa-pen-to-square" data-tooltip="Edit Article"></i></button>
-      <button id="save_article"><i class="fa-regular fa-bookmark" data-tooltip="Save Article"></i></button>
-      <button id="copy_article"><i class="fa-solid fa-clipboard" data-tooltip="Copy Article"></i></button>
-      <button id="export_article"><i class="fa-solid fa-file-export" data-tooltip="Export Article"></i></button>
-    </ul>
+    <div class="control_buttons">
+      <button type="button" id="edit_article"><i class="fa-regular fa-pen-to-square"></i> Edit</button>
+      <button type="button" id="save_article"><i class="fa-regular fa-bookmark"></i> Save</button>
+      <button type="button" id="copy_article"><i class="fa-solid fa-clipboard"></i> Copy</button>
+      <button type="button" id="export_article"><i class="fa-solid fa-file-export"></i> Export</button>
+    </div>
   </section>
-  
+
 </div>
 
 </body>

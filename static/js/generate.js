@@ -91,60 +91,14 @@ $(document).ready(function(){
 
 
 //   Page animations
-const element = document.querySelector('.aritcle-length');
-const choices = new Choices(element, {
-    animationDuration: 5000, // length of the animation in ms
-    shouldSort: false,
-    classNames: {
-        containerOuter: 'choices',
-        containerInner: 'choices__inner my-choices-container-inner',
-        item: 'choices__item my-choices-item',
-        choice: 'choices__choice my-choices-choice',
-    }
-});
-
-
-// Save article data from <p> to PostgreSQL database
-$(document).ready(function() {
-    $('.save_article').on('click', function () {
-        alert('Saved button clicked');
-        let topic = $('#article-data').text().split('.')[0];
-        let articleContent = $('#article-data').text();
-        let articleData = JSON.stringify({
-            topic: topic,
-            content: articleContent
-        });
-
-        $.ajax({
-            url: '/save_article',
-            type: 'POST',
-            contentType: 'application/json',
-            data: articleData,
-            dataType: 'json'
-        }).done(function (data) {
-            let successMessage = $('<div class="alert alert-success" role="alert">')
-                                    .text('Article Successfully Saved!');
-            $('.flash-container').empty().append(successMessage);
-        }).fail(function (err) {
-            let errorMsg = (err.responseJSON && err.responseJSON.message) ? err.responseJSON.message : 'Failed to save article, kindly try again';
-            let errorMessage = $('<div class="alert alert-danger" role="alert">')
-                                    .text(errorMsg);
-            $('.flash-container').empty().append(errorMessage);
-            console.error(errorMsg);
-        });
-    });
-});
-
-// Edit content
-window.onload = function() {
-    let edit = document.getElementById('edit_article');
-
-    edit.onclick = function(e) {
-        this.contentEditable = 'true';
-        this.focus(); // Focus the element to immediately allow editing
-    };
-
-    edit.onblur = function(e) {
-        this.contentEditable = 'false'; // Make sure to set this as a string
-    };
-};
+// const element = document.querySelector('.aritcle-length');
+// const choices = new Choices(element, {
+//     animationDuration: 5000, // length of the animation in ms
+//     shouldSort: false,
+//     classNames: {
+//         containerOuter: 'choices',
+//         containerInner: 'choices__inner my-choices-container-inner',
+//         item: 'choices__item my-choices-item',
+//         choice: 'choices__choice my-choices-choice',
+//     }
+// });
