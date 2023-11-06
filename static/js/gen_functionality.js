@@ -3,29 +3,33 @@ $(document).ready(function() {
     $('#save_article').on('click', function (event) {
         event.preventDefault(); // Prevent default form submission
 
-        let topic = $('#article-data h1').first().text();
-        let articleContent = $('#article-data').text();
+        let topic = $('#article-data').next().text().split('\n')[0].trim();
+        console.log(topic);
+        let content = $('#article-data').siblings('p').text().trim(); // the p tag is a sibling not a child
+        console.log(content);
         let articleData = JSON.stringify({
             topic: topic,
-            content: articleContent
+            content: content
         });
 
         $.ajax({
             url: '/save_article',
-            type: 'PUT',
+            type: 'POST', // Using POST as the method
             contentType: 'application/json',
             data: articleData,
-            dataType: 'json'
-        }).done(function (data) {
-            let successMessage = $('<div class="alert alert-success" role="alert">')
-                                    .text('Article Successfully Saved!');
-            $('#flash_container').empty().append(successMessage);
-        }).fail(function (err) {
-            let errorMsg = (err.responseJSON && err.responseJSON.message) ? err.responseJSON.message : 'Failed to save article, kindly try again';
-            let errorMessage = $('<div class="alert alert-danger" role="alert">')
-                                    .text(errorMsg);
-            $('#flash_container').empty().append(errorMessage);
-            console.error(errorMsg);
+            dataType: 'json',
+            success: function (data) {
+                let successMessage = $('<div class="alert alert-success" role="alert">')
+                                        .text('Article Successfully Saved!');
+                $('#flash_container').empty().append(successMessage);
+            },
+            error: function (xhr, status, error) {
+                let errorMsg = xhr.responseJSON && xhr.responseJSON.message ? xhr.responseJSON.message : 'Failed to save article, please try again';
+                let errorMessage = $('<div class="alert alert-danger" role="alert">')
+                                        .text(errorMsg);
+                $('#flash_container').empty().append(errorMessage);
+                console.error(errorMsg);
+            }
         });
     });
 });
@@ -33,7 +37,7 @@ $(document).ready(function() {
 // Edit content
 $(document).ready(function() {
     $('#edit_article').on('click', function () {
-        $('#article-data').attr('contentEditable', true);
+        $('#article-data p').attr('contentEditable', true);
         let successMessage = $('<div class="alert alert-success" role="alert">')
                                     .text('You can now edit this article!');
             $('#flash_container').empty().append(successMessage);

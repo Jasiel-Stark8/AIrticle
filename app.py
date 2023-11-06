@@ -17,7 +17,7 @@ app.config.from_object(OpenaiConfig)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
 
-# Now bind the app to the database
+# Bind app to the database
 db.init_app(app)
 
 # Move the imports here, after the app and db are set up
@@ -25,12 +25,12 @@ from models import user
 from models import article
 from api.v1.views.auth import auth
 from api.v1.views.generate import generate
-from api.v1.views.save_article import save
+from api.v1.views.save_article import save_blueprint
 
 # Register the blueprints
 app.register_blueprint(auth)
 app.register_blueprint(generate)
-app.register_blueprint(save)
+app.register_blueprint(save_blueprint)
 
 
 @app.route('/')
