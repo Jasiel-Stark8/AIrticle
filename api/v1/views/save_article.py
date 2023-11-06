@@ -5,8 +5,8 @@ from database import db
 
 save = Blueprint('save', __name__)
 
-@save.route('/save_article', methods=['PUT'], strict_slashes=False)
-def save_article_route():
+@save.route('/save_article', methods=['POST ', 'PUT'], strict_slashes=False)
+def save_article():
     """Save article to database referenced by user's id"""
     try:
         user_id = session.get('user_id')
@@ -27,10 +27,10 @@ def save_article_route():
             db.session.add(new_article)
             db.session.commit()
 
-            return jsonify({"message": "Article Saved"}), 200
-        return jsonify({"message": "Problem saving article, please try again"}), 400
+            return jsonify({"message": "Article Saved"})
+        return jsonify({"message": "Problem saving article, please try again"})
 
     except Exception as e:
         db.session.rollback()
         print(str(e))
-        return jsonify({"message": "An error occurred while saving the article"}), 500
+        return jsonify({"message": "An error occurred while saving the article"})

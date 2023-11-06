@@ -2,9 +2,8 @@
 $(document).ready(function() {
     $('#save_article').on('click', function (event) {
         event.preventDefault(); // Prevent default form submission
-        alert('Save button clicked'); // Debugging alert
 
-        let topic = $('#article-data').text().split('.')[0];
+        let topic = $('#article-data h1').first().text();
         let articleContent = $('#article-data').text();
         let articleData = JSON.stringify({
             topic: topic,
@@ -13,7 +12,7 @@ $(document).ready(function() {
 
         $.ajax({
             url: '/save_article',
-            type: 'POST',
+            type: 'PUT',
             contentType: 'application/json',
             data: articleData,
             dataType: 'json'

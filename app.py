@@ -22,12 +22,16 @@ db.init_app(app)
 
 # Move the imports here, after the app and db are set up
 from models import user
-from api.v1.views.generate import generate
+from models import article
 from api.v1.views.auth import auth
+from api.v1.views.generate import generate
+from api.v1.views.save_article import save
 
 # Register the blueprints
 app.register_blueprint(auth)
 app.register_blueprint(generate)
+app.register_blueprint(save)
+
 
 @app.route('/')
 def landing_page():
