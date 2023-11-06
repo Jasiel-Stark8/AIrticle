@@ -1,14 +1,13 @@
+"""Save Article Module"""
 from flask import Blueprint, abort, session, request, jsonify
-import logging
 from models.article import Article
 from database import db
 
-# Changed the Blueprint name to avoid conflict
 save = Blueprint('save', __name__)
 
-@save.route('/save_article', methods=['POST'], strict_slashes=False)
+@save.route('/save_article', methods=['PUT'], strict_slashes=False)
 def save_article_route():
-    """Save article to database"""
+    """Save article to database referenced by user's id"""
     try:
         user_id = session.get('user_id')
         if user_id is None:
@@ -29,8 +28,7 @@ def save_article_route():
             db.session.commit()
 
             return jsonify({"message": "Article Saved"}), 200
-        else:
-            return jsonify({"message": "Problem saving article, please try again"}), 400
+        return jsonify({"message": "Problem saving article, please try again"}), 400
 
     except Exception as e:
         db.session.rollback()

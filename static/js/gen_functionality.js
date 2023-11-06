@@ -35,6 +35,8 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('#edit_article').on('click', function () {
         $('#article-data').attr('contentEditable', true);
-        alert('You can now edit this article');
+        let successMessage = $('<div class="alert alert-success" role="alert">')
+                                    .text('You can now edit this article!');
+            $('#flash_container').empty().append(successMessage);
     });
 });

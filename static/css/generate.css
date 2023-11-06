@@ -304,6 +304,24 @@ margin-right: 10px;
     -moz-animation-delay:1.2s;
     -webkit-animation-delay:1.2s;
   }
+  #load div:nth-child(8) {
+    animation-delay: 1.4s;
+    -o-animation-delay: 1.4s;
+    -moz-animation-delay: 1.4s;
+    -webkit-animation-delay: 1.4s;
+  }
+  #load div:nth-child(9) {
+    animation-delay: 1.6s;
+    -o-animation-delay: 1.6s;
+    -moz-animation-delay: 1.6s;
+    -webkit-animation-delay: 1.6s;
+  }
+  #load div:nth-child(10) {
+    animation-delay: 1.8s;
+    -o-animation-delay: 1.8s;
+    -moz-animation-delay: 1.8s;
+    -webkit-animation-delay: 1.8s;
+  }
   
   @keyframes move {
     0% {
