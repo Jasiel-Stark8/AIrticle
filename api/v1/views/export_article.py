@@ -7,11 +7,12 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from werkzeug.utils import secure_filename
 from app import app
+from config import DashboardConfig
 
 
 export = Blueprint('export', __name__)
 
-UPLOAD_FOLDER = 'exports/'
+# UPLOAD_FOLDER = 'exports/' --- this is in the imported DashboardConfig
 ALLOWED_EXTENSIONS = {'docx', 'pdf', 'md', 'txt'}
 
 def allowed_file(filename):
@@ -23,9 +24,9 @@ def allowed_file(filename):
 @export.route('/export', methods=['POST'], strict_slashes=False)
 def export_content():
     """Export the content to desired format"""
-    content = request.form['content']
-    topic = request.form['topic']
-    export_format = request.form['format']
+    content = request.form.get('content')
+    topic = request.form.get('topic')
+    export_format = request.form.get('exportFormat')
 
     if export_format == 'docx':
         filename = export_docx(content, topic)
@@ -58,7 +59,8 @@ def export_pdf(content, topic):
     width, height = letter
     c.drawString(100, height - 100, content)
     c.save()
-    return f"{topic}.pdf"
+    filename = f"{topic}.pdf"
+    return filename
 
 
 def export_markdown(content, topic):

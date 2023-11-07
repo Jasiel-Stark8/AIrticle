@@ -47,7 +47,6 @@ $(document).ready(function() {
 // Copy content
 
 
-// Export content
 $(document).ready(function () {
     $('#export_article').on('click', function (event) {
         event.stopPropagation(); // Prevent click event from propagating to document
@@ -64,24 +63,27 @@ $(document).ready(function () {
         event.stopPropagation(); // Prevent click event from propagating to document
     });
 
-    // Main export functionality
-    let topic = $('#article-data').next().text().split('\n')[0].trim();
-    let content = $('#article-data').siblings('p').text().trim();
-    let exportFormat = $(this).attr('id');
+    // Event handler for export buttons
+    $('.format_dropdown button').on('click', function () {
+        let exportFormat = $(this).attr('id'); // Get the format based on the button clicked
+        let topic = $('#article-data').next().text().split('\n')[0].trim();
+        let content = $('#article-data').siblings('p').text().trim();
 
-    $.ajax({
-        url: '/export',
-        type: 'POST',
-        data: {
-            topic: topic,
-            content: content,
-            format: exportFormat
-        },
-        success: function (resposne) {
-            window.location.href = response // Trigger file download
-        },
-        fail: function (xhr, status, err) {
-            console.error("Export failed: ", status, err);
-        }
+        $.ajax({
+            url: '/export',
+            type: 'POST',
+            data: {
+                topic: topic,
+                content: content,
+                exportFormat: exportFormat
+            },
+            success: function (response) {
+                // Assuming 'response' contains the path to the downloaded file
+                window.location.href = response; // Trigger file download
+            },
+            error: function (xhr, status, err) {
+                console.error("Export failed: ", status, err);
+            }
+        });
     });
 });

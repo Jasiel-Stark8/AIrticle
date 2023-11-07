@@ -4,7 +4,7 @@ from flask import Flask, render_template
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
-from config import DevelopmentConfig, Config, OpenaiConfig
+from config import DevelopmentConfig, Config, OpenaiConfig, DashboardConfig
 from database import db
 
 load_dotenv()
@@ -12,6 +12,7 @@ load_dotenv()
 app = Flask(__name__)
 cors = CORS(app, resources={r"/api/v1/*": {"origins": "0.0.0.0"}})
 app.config.from_object(DevelopmentConfig)
+app.config.from_object(DashboardConfig)
 app.config.from_object(Config)
 app.config.from_object(OpenaiConfig)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
