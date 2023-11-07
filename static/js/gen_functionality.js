@@ -43,3 +43,39 @@ $(document).ready(function() {
             $('#flash_container').empty().append(successMessage);
     });
 });
+
+// Copy content
+
+
+// Export content
+$(document).ready(function () {
+    $('#export_article').on('click', function (event) {
+        event.stopPropagation(); // Prevent click event from propagating to document
+        $('.format_dropdown').toggle('fast'); // Use toggle to show/hide the dropdown
+    });
+
+    // Close the dropdown menu if clicked outside
+    $(document).on('click', function () {
+        $('.format_dropdown').hide('fast');
+    });
+
+    // Prevent clicks within the dropdown from closing it
+    $('.format_dropdown').on('click', function (event) {
+        event.stopPropagation(); // Prevent click event from propagating to document
+    });
+
+    // Main functionality bla bla bla
+    let content = $('#article-data').siblings('p').text().trim();
+    let exportFormat = '';
+});
+
+
+
+// THEME
+function toggleTheme() {
+    if (document.documentElement.getAttribute("data-theme") === "dark") {
+      document.documentElement.setAttribute("data-theme", "light");
+    } else {
+      document.documentElement.setAttribute("data-theme", "dark");
+    }
+  }

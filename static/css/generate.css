@@ -496,3 +496,31 @@ ul i:hover {
   height: 40;
   width: 90px;
 }
+
+
+/* ================================================================== */
+/* Export Icons */
+.control_buttons {
+  display: flex; /* Align buttons in a row */
+}
+.control_buttons button {
+  margin-right: 10px;
+}
+
+.export_wrapper {
+  position: relative;
+}
+
+.format_dropdown {
+  display: none;
+  position: absolute;
+  bottom: 100%; /* This will position the dropdown above the button */
+  left: 50%; /* Center the dropdown relative to the button */
+  transform: translateX(-50%); /* Align dropdown center with button center */
+  z-index: 1000;
+}
+.format_dropdown button {
+  margin-bottom: 5px;
+  width: 70px;
+  background-color: transparent;
+}

@@ -12,9 +12,10 @@ from app import app
 export = Blueprint('export', __name__)
 
 UPLOAD_FOLDER = 'exports/'
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'docx', 'md'}
+ALLOWED_EXTENSIONS = {'docx', 'pdf', 'md', 'txt'}
 
 def allowed_file(filename):
+    """Allowed file extensions"""
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
@@ -30,10 +31,10 @@ def export_content():
         filename = export_docx(content, topic)
     elif export_format == 'pdf':
         filename = export_pdf(content, topic)
-    elif export_format == 'txt':
-        filename = export_txt(content, topic)
     elif export_format == 'markdown':
         filename = export_markdown(content, topic)
+    elif export_format == 'txt':
+        filename = export_txt(content, topic)
     else:
         return "Unsupported Format", 400
 
@@ -60,18 +61,18 @@ def export_pdf(content, topic):
     return f"{topic}.pdf"
 
 
-def export_txt(content, topic):
-    """Export content as Txt"""
-    filename = secure_filename(f"{topic}.txt")
-    with open(os.path.join(app.config['UPLOAD_FOLDER'], filename), 'w', encoding='utf8') as f:
-        f.write(content)
-    return filename
-
-
 def export_markdown(content, topic):
     """Export content as Markdown"""
     filename = secure_filename(f"{topic}.md")
     with open(os.path.join(app.config['UPLOAD_FOLDER'], filename), 'w', encoding='utf8') as f:
         f.write(f"#{topic}\n\n")
+        f.write(content)
+    return filename
+
+
+def export_txt(content, topic):
+    """Export content as Txt"""
+    filename = secure_filename(f"{topic}.txt")
+    with open(os.path.join(app.config['UPLOAD_FOLDER'], filename), 'w', encoding='utf8') as f:
         f.write(content)
     return filename

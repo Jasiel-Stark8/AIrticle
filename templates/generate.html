@@ -32,9 +32,9 @@
             <!-- <img src="{{ url_for('static', filename='profile-pic.jpg') }}" class="profile-pic"> -->
           </button>
           <div class="dropdown-content">
-              <a href="#"> Updates & FAQs </a>
-              <a href="#"> Switch Theme </a>
-              <a href="{{ url_for('auth.login') }}" style="color: red;"> Log out </a>
+              <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i> Updates & FAQs </a>
+              <a ><i class="fa-solid fa-moon"></i> Switch Theme </a>
+              <a href="{{ url_for('auth.login') }}" style="color: red;"><i class="fa-solid fa-power-off"></i> Log out </a>
           </div>
       </div>
   </div>
@@ -86,12 +86,21 @@
       </p>
     </div>
     <div class="control_buttons">
-      <!-- Fontawesome icons { Edit | Save | Copy | Export } -->
-      <button type="button" id="edit_article"><i class="fa-regular fa-pen-to-square"></i> Edit</button>
-      <button type="button" id="save_article"><i class="fa-regular fa-bookmark"></i> Save</button>
-      <button type="button" id="copy_article"><i class="fa-solid fa-clipboard"></i> Copy</button>
-      <button type="button" id="export_article"><i class="fa-solid fa-file-export"></i> Export</button>
-    </div>
+      <button type="button" id="edit_article"><i class="fa-regular fa-pen-to-square"></i> Edit </button>
+      <button type="button" id="save_article"><i class="fa-regular fa-bookmark"></i> Save </button>
+      <button type="button" id="copy_article"><i class="fa-solid fa-clipboard"></i> Copy </button>
+      
+      <!-- Export button and associated dropdown menu -->
+      <div class="export_wrapper">
+          <button type="button" id="export_article"><i class="fa-solid fa-file-export"></i> Export </button>
+          <ul class="format_dropdown">
+              <li><button type="button" id="docx"><i class="fa-solid fa-file-word" style="color: #2B579A;"></i></button></li>
+              <li><button type="button" id="pdf"><i class="fa-solid fa-file-pdf" style="color: #FF0000;"></i></button></li>
+              <li><button type="button" id="md"><i class="fa-brands fa-markdown" style="color: #768390;"></i></button></li>
+              <li><button type="button" id="txt"><i class="fa-solid fa-file-lines" style="color: #141414;"></i></button></li>
+          </ul>
+      </div>
+  </div>
   </section>
 
 </div>
