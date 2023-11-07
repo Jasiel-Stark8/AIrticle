@@ -24,4 +24,4 @@ class OpenaiConfig():
 
 class DashboardConfig():
     """Configuration for dashboard"""
-    UPLOAD_FOLDER = os.getenv('UPLOAD_FOLDER')
+    # UPLOAD_FOLDER = os.getenv('UPLOAD_FOLDER') --- no need for upload since we are just exporting
