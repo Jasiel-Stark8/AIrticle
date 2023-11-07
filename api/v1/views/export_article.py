@@ -31,7 +31,7 @@ def export_content():
         filename = export_docx(content, topic)
     elif export_format == 'pdf':
         filename = export_pdf(content, topic)
-    elif export_format == 'markdown':
+    elif export_format == 'md':
         filename = export_markdown(content, topic)
     elif export_format == 'txt':
         filename = export_txt(content, topic)

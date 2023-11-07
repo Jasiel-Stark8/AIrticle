@@ -64,18 +64,24 @@ $(document).ready(function () {
         event.stopPropagation(); // Prevent click event from propagating to document
     });
 
-    // Main functionality bla bla bla
+    // Main export functionality
+    let topic = $('#article-data').next().text().split('\n')[0].trim();
     let content = $('#article-data').siblings('p').text().trim();
-    let exportFormat = '';
+    let exportFormat = $(this).attr('id');
+
+    $.ajax({
+        url: '/export',
+        type: 'POST',
+        data: {
+            topic: topic,
+            content: content,
+            format: exportFormat
+        },
+        success: function (resposne) {
+            window.location.href = response // Trigger file download
+        },
+        fail: function (xhr, status, err) {
+            console.error("Export failed: ", status, err);
+        }
+    });
 });
-
-
-
-// THEME
-function toggleTheme() {
-    if (document.documentElement.getAttribute("data-theme") === "dark") {
-      document.documentElement.setAttribute("data-theme", "light");
-    } else {
-      document.documentElement.setAttribute("data-theme", "dark");
-    }
-  }
