@@ -37,15 +37,59 @@ $(document).ready(function() {
 // Edit content
 $(document).ready(function() {
     $('#edit_article').on('click', function () {
-        $('#article-data p').attr('contentEditable', true);
-        let successMessage = $('<div class="alert alert-success" role="alert">')
-                                    .text('You can now edit this article!');
-            $('#flash_container').empty().append(successMessage);
+        let $articleContent = $('#article-data p');
+
+        // Toggle the contentEditable state and button text
+        if ($articleContent.attr('contentEditable') === 'true') {
+            $articleContent.attr('contentEditable', 'false');
+            $(this).text('Edit'); // Change button text to 'Edit'
+            alert('Editing is now disabled.'); // Alert the user
+        } else {
+            $articleContent.attr('contentEditable', 'true');
+            $(this).text('Done Editing'); // Change button text to 'Done Editing'
+            alert('You can now edit this article!'); // Alert the user
+        }
     });
 });
 
 // Copy content
+$(document).ready(function() {
+    $('#copy_article').on('click', function () {
+        // Select the content of the paragraph containing the article
+        var $articleContent = $('#article-data p');
 
+        // Check if there's any content to copy
+        if($articleContent.text().trim().length === 0){
+            alert('There is no content to copy.');
+            return;
+        }
+
+        // Create a range and selection to select the text
+        var range = document.createRange();
+        var selection = window.getSelection();
+        
+        // Clear any current selections
+        selection.removeAllRanges();
+
+        // Select the paragraph content
+        range.selectNodeContents($articleContent.get(0));
+        selection.addRange(range);
+
+        // Try to execute the copy command
+        try {
+            var successful = document.execCommand('copy');
+            var msg = successful ? 'successful' : 'unsuccessful';
+            console.log('Copy command was ' + msg);
+            alert('Copying text command was ' + msg);
+        } catch (err) {
+            console.log('Oops, unable to copy', err);
+            alert('Oops, unable to copy. ' + err);
+        }
+
+        // Clear the selection
+        selection.removeAllRanges();
+    });
+});
 
 
 // Export content

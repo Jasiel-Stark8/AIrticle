@@ -161,3 +161,4 @@ cython_debug/
 airticle_venv
 .env
 .idea
+__pycache__ .trash airticle_venv
