@@ -84,44 +84,60 @@ A commercialized version of this app will be available, allowing users without a
 ## ✨ Code-base Structure
 
 ```bash.
-├── AIrticle.png
+.
+├── AIrticle RESTful API Endpoints.txt
 ├── api
 │   ├── __init__.py
 │   └── v1
 │       ├── __init__.py
 │       └── views
 │           ├── auth.py
-│           ├── autosave.py
-│           ├── dashboard.py
-│           ├── gpt.py
-│           └── __init__.py
+│           ├── export_article.py
+│           ├── generate.py
+│           ├── __init__.py
+│           └── save_article.py
 ├── app.py
 ├── AUTHORS
 ├── config.py
+├── database.py
 ├── exports
 ├── LICENSE
+├── migrations
+│   ├── alembic.ini
+│   ├── env.py
+│   ├── README
+│   ├── script.py.mako
+│   └── versions
 ├── models
-│   ├── autosave.py
+│   ├── article.py
 │   ├── __init__.py
-│   ├── save_article.py
+│   ├── insert_cli.txt
 │   └── user.py
 ├── README.md
 ├── requirements.txt
 ├── static
 │   ├── css
-│   │   └── styles.css
-│   ├── images
+│   │   ├── articles.css
+│   │   ├── generate.css
+│   │   ├── landing.css
+│   │   ├── login.css
+│   │   └── signup.css
 │   └── js
-│       ├── dashboard.js
-│       └── scripts.js
+│       ├── articles.js
+│       ├── generate.js
+│       ├── gen_functionality.js
+│       ├── landing.js
+│       ├── login.js
+│       └── signup.js
 ├── templates
-│   ├── dashboard.html
+│   ├── articles.html
+│   ├── generate.html
 │   ├── landing.html
 │   ├── login.html
 │   └── signup.html
 └── tree
 
-11 directories, 26 files
+12 directories, 40 files
 ```
 
 ## API Endopints
