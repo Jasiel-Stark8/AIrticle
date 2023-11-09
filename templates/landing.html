@@ -1,3 +1,64 @@
-LANDING PAGE
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+        <title>AIrticle</title>
+    </head>
+    <body>
+        <header>
+            <!-- Header content -->
+            <nav class="navbar">
+                <!-- Each letter of "AIrticle" is wrapped in a <span> for the glowing effect -->
+                <div class="logo">
+                    <span>A</span><span>I</span><span>R</span><span>T</span><span>I</span><span>C</span><span>L</span><span>E</span> <small class="beta">BETA</small>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Welcome to AIrticle</h1>
+                <p>Your AI-Powered Article Co-Pilot</p>
+            </div>
+                <p>Designed for content creators, bloggers, and writers</p>
+            <div class="cta">
+                <a href="{{ url_for('signup_page') }}" class="btn">Get Started</a>
+            </div>
+        </section>
 
-<button type="button"><a href="{{ url_for('signup_page') }}">Get Started</a></button>
+        <section id="features">
+            <h2>Features</h2>
+            <div class="feature-container">
+                <article>
+                    <h3>Intuitive AI Writing</h3>
+                    <p>Generate articles with cutting-edge AI technology.</p>
+                </article>
+                <article>
+                    <h3>Customization</h3>
+                    <p>Edit and personalize your AI-generated content easily.</p>
+                </article>
+                <article>
+                    <h3>Export & Save</h3>
+                    <p>Export your articles in various formats and save your work effortlessly.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="about">
+            <h2>About AIrticle</h2>
+            <p>AIrticle is your go-to tool for creating engaging, high-quality content with the help of AI. Our mission is to make content creation easier and more accessible for everyone.</p>
+        </section>
+
+        <footer>
+            <!-- Footer content -->
+            <p>&copy; 2023 AIrticle. All rights reserved.</p>
+            <p><a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Service</a></p>
+        </footer>
+    </body>
+</html>
