@@ -28,7 +28,7 @@ def generate_article(topic, keywords, article_length):
         'short': '500',
         'medium': '1000',
         'long': '2000'
-    }.get(article_length, '1000')
+    }
 
     system_message = (f"Your task is to generate an article on the topic: {topic}. "
           f"Keywords: {', '.join(keywords)}. The article should be informative, engaging, "
