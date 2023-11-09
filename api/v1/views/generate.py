@@ -24,7 +24,7 @@ generate = Blueprint('generate', __name__)
 # Define the generate_article function
 def generate_article(topic, keywords, article_length):
     """GPT validation and generation"""
-    word_count = {
+    article_length = {
         'short': '500',
         'medium': '1000',
         'long': '2000'
@@ -32,7 +32,7 @@ def generate_article(topic, keywords, article_length):
 
     system_message = (f"Your task is to generate an article on the topic: {topic}. "
           f"Keywords: {', '.join(keywords)}. The article should be informative, engaging, "
-          f"and approximately {word_count} words long. "
+          f"and approximately {article_length} words long. "
           "You must include the following components:\n\n"
           "- A captivating title\n"
           "- An introduction that provides an overview of the topic\n"
@@ -58,17 +58,21 @@ def generate_article(topic, keywords, article_length):
 @generate.route('/generate', methods=['POST'])
 def generate_content():
     """Get article parameters from client to feed to GPT"""
-    topic = request.form.get('topic')
-    keywords = [k.strip() for k in request.form.get('keywords', '').split(',')]
-    article_length = request.form.get('article_length')
+    try:
+        topic = request.form.get('topic')
+        keywords = [k.strip() for k in request.form.get('keywords', '').split(',')]
+        article_length = request.form.get('article_length')
 
-    generated_article = generate_article(topic, keywords, article_length)
+        generated_article = generate_article(topic, keywords, article_length)
 
-    if generated_article:
-        response = jsonify({'generated_article': generated_article})
-        return response
-    else:
-        return render_template('generate.html', generated_article="Failed to generate an article.")
+        if generated_article:
+            response = jsonify({'generated_article': generated_article})
+            return response
+        else:
+            return render_template('generate.html', generated_article="Failed to generate an article.")
+    except Exception as e:
+        print(f'Error: {e}')
+        return render_template('generate.html', generated_article=f"Error generating article: {e}")
 
 
 @generate.route('/new_article', methods=['POST'], strict_slashes=False)
