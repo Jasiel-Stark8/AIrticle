@@ -1,3 +1,4 @@
+/* Global Styles */
 * {
     padding: 0;
     margin: 0;
@@ -8,18 +9,15 @@ body {
     font-family: 'Arial', sans-serif;
     color: white;
     background: linear-gradient(351deg, rgba(2,0,36,1) 12%, rgba(44,9,121,1) 48%, rgba(88,166,182,1) 87%);
-    height: 100vh;
-    position: relative;
-    text-align: center;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
 }
 
+/* Header and Navigation Bar */
 header {
-    position: absolute;
-    top: 0;
     width: 100%;
     background: rgba(0,0,0,0.5);
     padding: 10px 0;
@@ -32,50 +30,6 @@ header {
     padding: 0 20px;
 }
 
-.beta {
-    background-color: #4444dd;
-    text-emphasis-color: #082668;
-}
-
-/* ======================== BLINKING LOGO =========================== */
-/* Add the glowing text animation styles */
-@keyframes glowing {
-    0%, 100% {
-      color: #fff;
-      filter: blur(2px);
-      text-shadow: 0 0 10px #00b3ff,
-                   0 0 20px #00b3ff,
-                   0 0 40px #00b3ff,
-                   0 0 80px #00b3ff,
-                   0 0 120px #00b3ff,
-                   0 0 200px #00b3ff,
-                   0 0 300px #00b3ff,
-                   0 0 400px #00b3ff;
-    }
-    5%, 95% {
-      color: #111;
-      filter: blur(0px);
-      text-shadow: none;
-    }
-  }
-  
-  /* Apply the animation to the logo spans */
-  .logo span {
-      font-family: 'Arial', sans-serif; /* Changed from 'Bad Script' to match your theme */
-      animation: glowing 2s linear infinite;
-  }
-  
-  /* Set different animation delays for each span to create a sequential glowing effect */
-  .logo span:nth-child(1) { animation-delay: 0s; }
-  .logo span:nth-child(2) { animation-delay: .25s; }
-  .logo span:nth-child(3) { animation-delay: .5s; }
-  .logo span:nth-child(4) { animation-delay: .75s; }
-  .logo span:nth-child(5) { animation-delay: 1s; }
-  .logo span:nth-child(6) { animation-delay: 1.25s; }
-  .logo span:nth-child(7) { animation-delay: 1.5s; }
-  .logo span:nth-child(8) { animation-delay: 1.75s; }
-
-  /* ====================== END OF BLINKING LOGO ============================= */
 .nav-links {
     list-style: none;
     display: flex;
@@ -89,35 +43,86 @@ header {
     color: white;
     text-decoration: none;
     opacity: 0.8;
+    transition: color 0.3s;
 }
 
 .nav-links a:hover {
     opacity: 1;
+    color: #00b3ff;
 }
 
+/* Main Content Section */
+section {
+    padding-top: 60px;
+    width: 90%;
+    margin: auto;
+}
+
+/* Welcome Section Styling */
 .hero-content {
     text-align: left;
-}
-
-.hero  {
-   position: fixed;
-   left: 0%;
-   top: 5%;
-   z-index: 998;
-   margin-left: 20px;
+    padding-left: 10%;
+    max-width: 600px;
+    animation: fadeIn 2s ease-out;
 }
 
 .hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-   
-}
-
-.hero p {
-    font-size: 1.2rem;
+    font-size: 3rem;
+    color: #00b3ff;
     margin-bottom: 20px;
 }
 
+.hero p {
+    font-size: 1.5rem;
+    line-height: 1.4;
+    color: #ededed;
+}
+
+/* Animations and Keyframes */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes glowing {
+    0%, 100% {
+        color: #fff;
+        filter: blur(2px);
+        text-shadow: 0 0 10px #00b3ff, 0 0 20px #00b3ff, 0 0 40px #00b3ff, 0 0 80px #00b3ff, 0 0 120px #00b3ff, 0 0 200px #00b3ff, 0 0 300px #00b3ff, 0 0 400px #00b3ff;
+    }
+    5%, 95% {
+        color: #111;
+        filter: blur(0px);
+        text-shadow: none;
+    }
+}
+
+.logo span {
+    font-family: 'Arial', sans-serif;
+    animation: glowing 2s linear infinite;
+}
+
+.logo span:nth-child(1) { animation-delay: 0s; }
+.logo span:nth-child(2) { animation-delay: .25s; }
+.logo span:nth-child(3) { animation-delay: .5s; }
+.logo span:nth-child(4) { animation-delay: .75s; }
+.logo span:nth-child(5) { animation-delay: 1s; }
+.logo span:nth-child(6) { animation-delay: 1.25s; }
+.logo span:nth-child(7) { animation-delay: 1.5s; }
+.logo span:nth-child(8) { animation-delay: 1.75s; }
+
+/* Stylish Animations for Feature Images */
+.feature-container img {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+/* Button Styling */
 .btn {
     display: inline-block;
     height: 50px;
@@ -129,26 +134,56 @@ header {
     color: white;
     text-decoration: none;
     font-size: 1.2rem;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .btn:hover {
     background-color: #6666ff;
+    transform: scale(1.05);
 }
 
+/* Features Section */
 #features {
-    margin-bottom: 35px;
-    padding-bottom: 10px;
-
+    margin-top: 20px;
+    width: 80%;
 }
 
+.feature-container div {
+    margin-bottom: 50px;
+}
 
+#feature-one, #feature-two {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
+/* Footer Styling */
 footer {
-    position: absolute;
-    bottom: 0;
     width: 100%;
     background: rgba(0,0,0,0.5);
     padding: 10px 0;
     font-size: 0.8rem;
+    position: relative;
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    /* Additional mobile-specific styles */
+}
+
+@media (max-width: 480px) {
+    /* Styles for smaller devices */
+}
+
+/* Additional styles and adjustments as needed */
+
+/* Remember to test across different browsers and devices */

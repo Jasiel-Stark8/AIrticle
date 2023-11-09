@@ -8,11 +8,9 @@
     </head>
     <body>
         <header>
-            <!-- Header content -->
             <nav class="navbar">
-                <!-- Each letter of "AIrticle" is wrapped in a <span> for the glowing effect -->
                 <div class="logo">
-                    <span>A</span><span>I</span><span>R</span><span>T</span><span>I</span><span>C</span><span>L</span><span>E</span> <small class="beta">BETA</small>
+                    <span>A</span><span>I</span><span>r</span><span>t</span><span>i</span><span>c</span><span>l</span><span>e</span> <small class="beta">BETA</small>
                 </div>
                 <ul class="nav-links">
                     <li><a href="#features">Features</a></li>
@@ -25,28 +23,37 @@
             <div class="hero-content">
                 <h1>Welcome to AIrticle</h1>
                 <p>Your AI-Powered Article Co-Pilot</p>
-            </div>
                 <p>Designed for content creators, bloggers, and writers</p>
-            <div class="cta">
-                <a href="{{ url_for('signup_page') }}" class="btn">Get Started</a>
+                <div class="cta">
+                    <a href="{{ url_for('signup_page') }}" class="btn">Get Started</a>
+                </div>
             </div>
         </section>
 
         <section id="features">
             <h2>Features</h2>
             <div class="feature-container">
-                <article>
-                    <h3>Intuitive AI Writing</h3>
-                    <p>Generate articles with cutting-edge AI technology.</p>
-                </article>
-                <article>
-                    <h3>Customization</h3>
-                    <p>Edit and personalize your AI-generated content easily.</p>
-                </article>
-                <article>
+                <div id="feature-one">
+                    <div class="f-one">
+                        <h3>Intuitive AI Writing</h3>
+                        <p>Generate articles with cutting-edge AI technology.</p>
+                    </div>
+                    <img src="{{ url_for('static', filename='images/DALL·E-hero.png') }}" alt="A robot writing with a feather" height="300px" width="500px" />
+                </div>
+
+                <div id="feature-two">
+                    <img src="{{ url_for('static', filename='images/DALL·E-customize-logo.png') }}" alt="A robot holding a pen" height="300px" width="500px" />
+                    <div class="f-two">
+                        <h3>Customization</h3>
+                        <p>Edit and personalize your AI-generated content easily.</p>
+                    </div>
+                </div>
+
+                <div id="feature-three">
                     <h3>Export & Save</h3>
                     <p>Export your articles in various formats and save your work effortlessly.</p>
-                </article>
+                    <img src="{{ url_for('static', filename='images/dall-e3-txt-logo.png') }}" alt="Export as TXT image" height="300px" width="500px" />
+                </div>
             </div>
         </section>
 
@@ -56,7 +63,6 @@
         </section>
 
         <footer>
-            <!-- Footer content -->
             <p>&copy; 2023 AIrticle. All rights reserved.</p>
             <p><a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Service</a></p>
         </footer>
