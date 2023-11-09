@@ -19,7 +19,7 @@ app.config.from_object(config_class)
 
 # If you need to override any settings or add additional ones:
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'default_secret_key')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI') # Set to heroku
 
 # Bind app to the database
 db.init_app(app)
