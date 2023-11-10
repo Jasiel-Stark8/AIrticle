@@ -24,15 +24,16 @@ generate = Blueprint('generate', __name__)
 # Define the generate_article function
 def generate_article(topic, keywords, article_length):
     """GPT validation and generation"""
-    article_length = {
+    length_dict = {
         'short': '500',
         'medium': '1000',
         'long': '2000'
     }
+    selected_length = length_dict.get(article_length, '500')
 
     system_message = (f"Your task is to generate an article on the topic: {topic}. "
           f"Keywords: {', '.join(keywords)}. The article should be informative, engaging, "
-          f"and approximately {article_length} words long. "
+          f"and approximately {selected_length} words long. "
           "You must include the following components:\n\n"
           "- A captivating title\n"
           "- An introduction that provides an overview of the topic\n"
