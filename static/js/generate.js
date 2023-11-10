@@ -65,7 +65,7 @@ $(document).ready(function(){
 
       $.ajax({
         type: "POST",
-        url: "/api/v1/generate",
+        url: "/generate",
         data: formData,
         success: function(response){
             $("#load").hide(); // Hide new loading animation

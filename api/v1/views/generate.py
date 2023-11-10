@@ -17,7 +17,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # BLUEPRINT
 from flask import Blueprint
-generate = Blueprint('generate', __name__, url_prefix='/api/v1')
+generate = Blueprint('generate', __name__)
 
 
 # ======================== Generate Article Logic ========================
