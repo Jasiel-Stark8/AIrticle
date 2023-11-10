@@ -17,17 +17,17 @@ auth = Blueprint('auth', __name__, url_prefix='/auth')
 
 
 
-def is_authenticated():
-    """Check if user is authenticated"""
-    return 'user_id' in session
+# def is_authenticated():
+#     """Check if user is authenticated"""
+#     return 'user_id' in session
 
 
-@auth.before_request
-def require_login():
-    protected_routes = ['/generate']
-    if request.path in protected_routes and not is_authenticated():
-        flash('Kindly login to access generate')
-        return redirect(url_for('auth.login'))
+# @auth.before_request
+# def require_login():
+#     protected_routes = ['/generate']
+#     if request.path in protected_routes and not is_authenticated():
+#         flash('Kindly login to access generate')
+#         return redirect(url_for('auth.login'))
 
 
 @auth.route('/signup', methods=['GET', 'POST'], strict_slashes=False)
