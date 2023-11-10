@@ -76,7 +76,7 @@ def generate_content():
         return render_template('generate.html', generated_article=f"Error generating article: {e}")
 
 
-@generate.route('/new_article', methods=['POST'], strict_slashes=False)
+@generate.route('/new_article', strict_slashes=False)
 def create_new_article():
     """Create new article"""
     return render_template('generate.html')
