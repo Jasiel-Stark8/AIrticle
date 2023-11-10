@@ -44,7 +44,7 @@ def generate_article(topic, keywords, article_length):
 
     # Uncomment and modify this when you're using the OpenAI API
     response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+        model="gpt-3.5-turbo-0613",
         messages=[
             {"role": "system", "content": system_message},
             {"role": "user", "content": user_message},
