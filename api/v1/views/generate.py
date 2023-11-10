@@ -13,7 +13,7 @@ from flask import Flask, render_template, request, jsonify
 from database import db
 
 load_dotenv()
-openai.api_key = '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'
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # BLUEPRINT
 from flask import Blueprint
