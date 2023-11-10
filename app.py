@@ -19,8 +19,7 @@ app.config.from_object(config_class)
 
 # If you need to override any settings or add additional ones:
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'default_secret_key')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://gxvybautygjgob:220507c90711e1ea78674eab052cd288c7724351db7c70b2ad2e932dce2e549c@ec2-44-213-228-107.compute-1.amazonaws.com:5432/d3vrnsdlecemav
-'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://gxvybautygjgob:220507c90711e1ea78674eab052cd288c7724351db7c70b2ad2e932dce2e549c@ec2-44-213-228-107.compute-1.amazonaws.com:5432/d3vrnsdlecemav'
 
 # Bind app to the database
 db.init_app(app)
