@@ -78,7 +78,7 @@ $(document).ready(function(){
                 if(i >= content.length){
                     clearInterval(interval);
                 }
-            }, 15); // Change this number to speed up or slow down the effect
+            }); //15); // Change this number to speed up or slow down the effect
         },
         error: function(error){
           console.log("Error: ", error);
