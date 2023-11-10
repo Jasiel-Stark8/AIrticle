@@ -19,7 +19,7 @@ app.config.from_object(config_class)
 
 # If you need to override any settings or add additional ones:
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'default_secret_key')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI') # Set to heroku
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://leqmncfnxwaejk:9bcab30cd4262bcb21c09437e6d4013db6093e3be28915a7098b3f68f591bd45@ec2-3-230-24-12.compute-1.amazonaws.com:5432/d6ao2e0u8qsrmg'
 
 # Bind app to the database
 db.init_app(app)
