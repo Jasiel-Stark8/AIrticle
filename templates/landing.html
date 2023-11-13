@@ -5,6 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='js/landing.js') }}">
+        
+        <!-- FontAwesome Icon Library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+        <!-- AOS Library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" integrity="sha512-Ho8AyLOo5gDRvRptxGKjaJl8qp1JsDA4lzoSXv6/1L0I3wRvTqGwPdUeN1kXpmo8/DlOeQoJrYpVqw2VH2U0HQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <title>AIrticle</title>
     </head>
     <body>
@@ -13,6 +19,11 @@
                 <div class="logo">
                     <span>A</span><span>I</span><span>r</span><span>t</span><span>i</span><span>c</span><span>l</span><span>e</span> <small class="beta">BETA</small>
                 </div>
+                <!-- Hamburger Icon -->
+                <button class="nav-toggle" aria-label="toggle navigation">
+                    <span class="hamburger"></span>
+                </button>
+                <!-- Navigation Links -->
                 <ul class="nav-links">
                     <li><a href="#features">Features</a></li>
                     <li><a href="#about">About</a></li>
@@ -22,7 +33,7 @@
         </header>
         <section class="hero">
             <div class="hero-content">
-                <h1>Welcome to The AIrticle</h1>
+                <h1>Welcome to <i class="gradient-text">{The AIrticle}</i></h1>
                 <p>Your AI-Powered Article Co-Pilot</p>
                 <p>Designed for content creators, bloggers, and writers</p>
                 <div class="cta">
@@ -59,13 +70,44 @@
         </section>
 
         <section id="about">
-            <h2>About AIrticle</h2>
+            <h2>About The AIrticle</h2>
             <p>AIrticle is your go-to tool for creating engaging, high-quality content with the help of AI. Our mission is to make content creation easier and more accessible for everyone.</p>
+        </section>
+
+        <section id="contact" data-aos="fade-up" data-aos-duration="1000">
+            <h2>Contact Us</h2>
+            <p>Have questions or want to get in touch? Our team is ready to assist you.</p>
+            <div class="contact-details">
+                <p><i class="fa-solid fa-envelope"></i> Email us at: <a href="mailto:theairticle@gmail.com">theairticle@gmail.com</a></p>
+                <p><i class="fa-brands fa-linkedin"></i> Connect with us on <a href="https://www.linkedin.com/in/jason-quist-4a0651261/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+                <p><i class="fa-brands fa-whatsapp"></i> Chat with us on WhatsApp: <a href="https://wa.me/+233532419012" target="_blank" rel="noopener noreferrer">+233 53 241 9012</a></p>
+            </div>
         </section>
 
         <footer>
             <p>&copy; 2023 TheAIrticle. All rights reserved.</p>
             <p><a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Service</a></p>
         </footer>
+
+
+
+        <!-- Initialize AOS Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" integrity="sha512-3hqd6U6VyD5Kx6q8xTtG5ntWHwL7RM3xjo4YI3fwJNFN+M6/hyDOkKvu7ef1r8Zj3RBO1Kq3yMN5VbQ4Y6uhRQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        AOS.init();
+    </script>
+
+    <script>
+        // Wait for the DOM to load
+        document.addEventListener('DOMContentLoaded', () => {
+            const navToggle = document.querySelector('.nav-toggle');
+            const navLinks = document.querySelector('.nav-links');
+    
+            // Toggle the 'active' class on the '.nav-links' when the toggle button is clicked
+            navToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        });
+    </script>
     </body>
 </html>

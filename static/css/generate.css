@@ -1,3 +1,35 @@
+/* =================================== Scroll Bar Start =================================== */
+/* Style the scrollbar - works for Chrome, Edge, and Safari */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Handle of the scrollbar */
+::-webkit-scrollbar-thumb {
+  background: #35a79c;
+  border-radius: 10px; /* Increase border-radius for rounded top and bottom */
+}
+
+/* Handle of the scrollbar on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #1f7a6d;
+}
+
+/* Track of the scrollbar */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px; /* Optionally round the track as well */
+  box-shadow: inset 0 0 5px grey;
+}
+
+/* Style for Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #35a79c #f1f1f1;
+}
+/* =================================== Scroll Bar End =================================== */
+
+
 /* Global Styles */
 * {
     margin: 0;
@@ -523,4 +555,107 @@ ul i:hover {
   margin-bottom: 5px;
   width: 70px;
   background-color: transparent;
+}
+
+
+/* ===================================================================== RESPONSIVENESS ===================================================================== */
+/* Styles for small devices (phones) */
+@media only screen and (max-width: 320px) {
+  .main-container {
+      display: block;
+  }
+
+  .left_section, .right_section {
+      width: 100%;
+      padding: 10px;
+  }
+
+  .navbar {
+      flex-direction: column;
+      padding: 5px;
+  }
+
+  .logo {
+      font-size: 20px;
+  }
+
+  .article-input input, .aritcle-length, button {
+      font-size: 14px;
+      padding: 8px;
+  }
+
+  /* Additional styles for smallest screens */
+  /* ... */
+}
+
+/* Styles for medium devices (tablets) */
+@media only screen and (min-width: 321px) and (max-width: 768px) {
+  .main-container {
+      flex-direction: column;
+  }
+
+  .left_section, .right_section {
+      width: 100%;
+      float: none;
+  }
+
+  .navbar {
+      flex-direction: column;
+  }
+
+  .logo, .profile {
+      text-align: center;
+      margin: 10px 0;
+  }
+
+  /* Adjust styles for medium screens */
+  /* ... */
+}
+
+/* Styles for large devices (desktops) */
+@media only screen and (min-width: 769px) {
+  .main-container {
+      display: flex;
+      flex-direction: row;
+  }
+
+  .left_section {
+      width: 50%;
+  }
+
+  .right_section {
+      width: 50%;
+  }
+
+  /* Adjust styles for larger screens */
+  /* ... */
+}
+
+/* Additional media query for very small devices (less than 320px) */
+@media only screen and (max-width: 250px) {
+  .main-container {
+      display: block;
+  }
+
+  .left_section, .right_section {
+      width: 100%;
+      padding: 5px;
+  }
+
+  .navbar {
+      flex-direction: column;
+      padding: 3px;
+  }
+
+  .logo {
+      font-size: 18px;
+  }
+
+  .article-input input, .aritcle-length, button {
+      font-size: 12px;
+      padding: 6px;
+  }
+
+  /* Further adjustments for the smallest screens */
+  /* ... */
 }
