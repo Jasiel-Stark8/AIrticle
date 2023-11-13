@@ -48,7 +48,7 @@ def generate_article(topic, keywords, article_length):
                 {"role": "system", "content": system_message},
                 {"role": "user", "content": user_message},
             ],
-            max_tokens=int(selected_length),
+            # max_tokens=int(selected_length),
             temperature=0.7,
             stream=True
         )
