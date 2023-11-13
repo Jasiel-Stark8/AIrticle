@@ -19,7 +19,7 @@ app.config.from_object(config_class)
 
 # If you need to override any settings or add additional ones:
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'default_secret_key')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://airticle:220300@localhost:5432/airticle'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://airticle:pAzGxP2y7zBeB6OjE1kt4CdRuvHmiMUV@dpg-cl95uh2uuipc73f1rmmg-a/airticle'
 
 # Bind app to the database
 db.init_app(app)
@@ -62,4 +62,4 @@ def home():
     return render_template('generate.html')
 
 if __name__ == '__main__':
-    app.run(debug=True, host='127.0.0.1', port=5000) # debug=True, host='localhost', port=5000
+    app.run() # debug=True, host='localhost', port=5000
