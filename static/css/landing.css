@@ -42,6 +42,12 @@ body {
     padding: 1em 2em;
 }
 
+.navbar .nav-links a:hover {
+    color: #ffd700; /* Gold color on hover */
+    transition: color 0.3s;
+}
+
+
 
 /* ============================ LOGO ANNIMATION & BETA TEXT ============================ */
 .navbar .logo {
@@ -117,12 +123,45 @@ body {
 .hero h1 {
     font-size: 2.5em;
     margin-bottom: 0.5em;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: .15em solid transparent; /* Simulates the cursor */
+    animation: typing 3.5s steps(30, end), blink-caret .75s step-end infinite;
 }
 
 .hero p {
     font-size: 1.2em;
     margin-bottom: 1.5em;
 }
+
+/* =========================== HERO ANNIMATION =========================== */
+/* Typewriter typing effect */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+/* Cursor animations */
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: white; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-content {
+    animation: fadeInUp 1s ease-out;
+}
+/* =========================== HERO ANNIMATION END =========================== */
 
 /* Features Section */
 #features {
@@ -156,23 +195,63 @@ body {
     border-radius: 10px;
 }
 
-/* About Section */
+/* FEATURES ANNIMATION */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.feature-container div {
+    opacity: 0;
+    animation: fadeInSlideUp 1s ease-out forwards;
+    animation-delay: calc(var(--animation-order) * 0.2s);
+}
+
+.feature-container div[id=feature-one] { --animation-order: 1; }
+.feature-container div[id=feature-two] { --animation-order: 2; }
+.feature-container div[id=feature-three] { --animation-order: 3; }
+/* ================================ FEATRES ANNIMATION END ================================  */
+
+
+/* ================================  About Section ================================  */
 #about {
-    background-color: #e6e6e6;
-    padding: 2em 0;
-    text-align: center;
+    background-color: #fff; /* Light background for readability */
+    padding: 4em 0; /* Ample padding for a spacious layout */
+    text-align: center; /* Centered text for focus */
+    color: #333; /* Dark text for contrast and readability */
 }
 
 #about h2 {
-    font-size: 2em;
-    margin-bottom: 1em;
+    font-size: 2.5em; /* Large font size for the heading */
+    color: #4CAF50; /* Color to match your branding */
+    margin-bottom: 0.5em; /* Space below the heading */
 }
 
 #about p {
-    max-width: 600px;
-    margin: auto;
-    padding: 0 1em;
+    max-width: 600px; /* Restrict paragraph width for easier reading */
+    margin: auto; /* Center the paragraph */
+    font-size: 1.2em; /* Slightly larger font size for readability */
+    line-height: 1.6; /* Line height for better text flow */
 }
+
+/* Responsive Design for About Section */
+@media screen and (max-width: 768px) {
+    #about {
+        padding: 2em 0; /* Lesser padding on smaller screens */
+    }
+
+    #about p {
+        padding: 0 1em; /* Padding on the sides for mobile readability */
+    }
+}
+/* ================================  ABOUT ANNIMATION END ================================  */
+
 
 /* Footer */
 footer {
@@ -186,6 +265,22 @@ footer a {
     color: white;
     text-decoration: none;
 }
+
+/* FOOTER ANNIMATION */
+footer a:hover {
+    color: #ffd700; /* Gold color on hover */
+    transition: color 0.3s;
+}
+/* FOOTER ANNIMATION END */
+
+
+
+
+
+
+
+
+
 
 /* Media Queries for Responsiveness */
 @media screen and (max-width: 768px) {
