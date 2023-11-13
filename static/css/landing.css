@@ -1,89 +1,34 @@
-/* Global Styles */
+/* Basic Reset and Box Sizing */
 * {
-    padding: 0;
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 body {
     font-family: 'Arial', sans-serif;
-    color: white;
-    background: linear-gradient(351deg, rgba(2,0,36,1) 12%, rgba(44,9,121,1) 48%, rgba(88,166,182,1) 87%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
 }
 
-/* Header and Navigation Bar */
-header {
-    width: 100%;
-    background: rgba(0,0,0,0.5);
-    padding: 10px 0;
-}
-
+/* Navbar */
 .navbar {
+    background-color: teal; /* Adjust to your brand color */
+    color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    padding: 1em 2em;
 }
 
-.nav-links {
-    list-style: none;
-    display: flex;
+
+/* ============================ LOGO ANNIMATION & BETA TEXT ============================ */
+.navbar .logo {
+    font-size: 1.5em;
 }
 
-.nav-links li {
-    margin-left: 20px;
-}
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    opacity: 0.8;
-    transition: color 0.3s;
-}
-
-.nav-links a:hover {
-    opacity: 1;
-    color: #00b3ff;
-}
-
-/* Main Content Section */
-section {
-    padding-top: 60px;
-    width: 90%;
-    margin: auto;
-}
-
-/* Welcome Section Styling */
-.hero-content {
-    text-align: left;
-    padding-left: 10%;
-    max-width: 600px;
-    animation: fadeIn 2s ease-out;
-}
-
-.hero h1 {
-    font-size: 3rem;
-    color: #00b3ff;
-    margin-bottom: 20px;
-}
-
-.hero p {
-    font-size: 1.5rem;
-    line-height: 1.4;
-    color: #ededed;
-}
-
-/* Animations and Keyframes */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
+/* Logo Animation */
 @keyframes glowing {
     0%, 100% {
         color: #fff;
@@ -111,79 +56,139 @@ section {
 .logo span:nth-child(7) { animation-delay: 1.5s; }
 .logo span:nth-child(8) { animation-delay: 1.75s; }
 
-/* Stylish Animations for Feature Images */
-.feature-container img {
-    animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0); }
-}
-
-/* Button Styling */
-.btn {
+.navbar .logo .beta {
     display: inline-block;
-    height: 50px;
-    line-height: 50px;
-    width: 200px;
-    border: none;
-    border-radius: 0.5rem;
-    background-color: #4444dd;
+    margin-left: 10px;
+    color: #080808; /* Adjust text color as needed */
+    background-color: #00ffc8; /* Background color of the badge */
+    font-size: 0.5em;
+    text-transform: uppercase;
+    padding: 3px 6px; /* Padding inside the badge */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(116, 95, 95, 0.3); /* Subtle shadow for depth */
+    border: 0.5px solid #ffffff; /* White border for contrast */
+}
+/* ============================ END LOGO ANNIMATION & BETA TEXT ============================ */
+
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.navbar .nav-links li {
+    margin-left: 20px;
+}
+
+.navbar .nav-links a {
     color: white;
     text-decoration: none;
-    font-size: 1.2rem;
-    transition: background-color 0.3s, transform 0.2s;
+    font-size: 1em;
 }
 
-.btn:hover {
-    background-color: #6666ff;
-    transform: scale(1.05);
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('path_to_your_hero_image.jpg') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    padding: 4em 0;
+}
+
+.hero h1 {
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+}
+
+.hero p {
+    font-size: 1.2em;
+    margin-bottom: 1.5em;
+}
+
+.hero .btn {
+    background-color: #ff9900; /* Adjust to your brand color */
+    color: white;
+    padding: 1em 2em;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 /* Features Section */
 #features {
-    margin-top: 20px;
-    width: 80%;
+    padding: 2em 0;
+    text-align: center;
+}
+
+#features h2 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 1em;
+}
+
+.feature-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1em;
+    padding: 1em;
 }
 
 .feature-container div {
-    margin-bottom: 50px;
+    background: white;
+    padding: 1em;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
 }
 
-#feature-one, #feature-two {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.feature-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
 }
 
-/* Footer Styling */
+/* About Section */
+#about {
+    background-color: #e6e6e6;
+    padding: 2em 0;
+    text-align: center;
+}
+
+#about h2 {
+    font-size: 2em;
+    margin-bottom: 1em;
+}
+
+#about p {
+    max-width: 600px;
+    margin: auto;
+    padding: 0 1em;
+}
+
+/* Footer */
 footer {
-    width: 100%;
-    background: rgba(0,0,0,0.5);
-    padding: 10px 0;
-    font-size: 0.8rem;
-    position: relative;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2rem;
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 768px) {
+    .feature-container {
+        grid-template-columns: 1fr;
     }
 
-    .hero p {
-        font-size: 1rem;
+    .navbar .nav-links {
+        flex-direction: column;
+        align-items: center;
     }
 
-    /* Additional mobile-specific styles */
+    .navbar .nav-links li {
+        margin: 10px 0;
+    }
 }
-
-@media (max-width: 480px) {
-    /* Styles for smaller devices */
-}
-
-/* Additional styles and adjustments as needed */
-
-/* Remember to test across different browsers and devices */
