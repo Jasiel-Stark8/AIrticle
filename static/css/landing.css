@@ -356,7 +356,23 @@ body {
         font-size: 1em; /* Slightly smaller font size on mobile */
     }
 }
+/* Responsive styles for screens with a max-width of 250px */
+@media only screen and (max-width: 250px) {
+    #contact h2 {
+        font-size: 1.2em; /* Smaller heading */
+    }
 
+    #contact p {
+        font-size: 0.9em; /* Smaller paragraph text */
+    }
+
+    .contact-button {
+        display: block; /* Stack buttons vertically */
+        width: 100%; /* Full width for buttons */
+        margin: 0.5em 0; /* Adjust margins for vertical stacking */
+        padding: 0.5em; /* Adjust padding */
+    }
+}
 /* Contact Us Section End */
 
 
@@ -449,8 +465,11 @@ body {
 }
 /* Responsive styles for screens with a max-width of 250px */
 @media only screen and (max-width: 250px) {
+    .faq-section {
+        display: block;
+    }
     .faq-section h2 {
-        font-size: 1.2em; /* Slightly smaller */
+        font-size: 1em; /* Slightly smaller */
     }
 
     .faq-item {
