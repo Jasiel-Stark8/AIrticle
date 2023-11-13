@@ -306,54 +306,49 @@ body {
     to { transform: translateY(0); opacity: 1; }
 }
 
-/* Apply the animations to the Contact section */
+/* Contact Us Section Start */
+
+/* Contact section animation */
 #contact {
+    background-color: #fff; /* Change this to match your color scheme */
+    padding: 4em 0;
+    text-align: center;
     animation: fadeIn 1s ease-in-out, slideUp 0.5s ease-in-out;
     animation-fill-mode: forwards; /* Keeps the element in the final state of the animation */
     opacity: 0; /* Start with the section hidden */
 }
 
-.contact-details p {
-    margin: 10px 0; /* Spacing between contact lines */
-}
-
-#contact {
-    background-color: #fff; /* Change this to suit your color scheme */
-    padding: 4em 0;
-    text-align: center;
-}
-
+/* Contact details styling */
 .contact-details {
     margin-top: 2em;
 }
 
-.contact-details p {
-    font-size: 1.2em;
-    margin-bottom: 0.5em; /* Adjust the space between contact methods */
-    color: #333; /* This should be a readable color that matches your design */
-}
-
 .contact-details a {
+    font-size: 1.2em;
     color: teal; /* Adjust to match your brand color */
+    text-decoration: none; /* Removes underline from links */
     transition: color 0.3s ease-in-out;
 }
 
-.contact-details a:hover {
+.contact-details a:hover,
+.contact-details a:focus { /* Adds a hover and focus state for accessibility */
     color: #35a79c; /* A slightly different shade for hover state */
+    text-decoration: underline; /* Adds underline on hover for clarity */
 }
 
-/* Icon styling */
+/* Icon styling within links */
 .contact-details i {
     margin-right: 8px; /* Space out the icon from the text */
-    color: #4CAF50; /* Icon color can match your button or brand color */
+    color: #4CAF50; /* Icon color can match your brand color */
 }
 
 /* Adjustments for mobile screens */
 @media screen and (max-width: 768px) {
-    .contact-details p {
+    .contact-details a {
         font-size: 1em; /* Slightly smaller font size on mobile */
     }
 }
+
 /* Contact Us Section End */
 
 
