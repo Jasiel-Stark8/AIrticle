@@ -5,51 +5,64 @@
     /* background-color: #222222; */
 }
 
+html,
 body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* 100% of the viewport height */
-    background-color: #f8f9fa; /* Any background color you like */
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(45deg, #232829, #2193b0);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
 .container {
-    left: 20%;
-    top: 20%;
-    height: 590px;
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    border: 1px solid #FFF;
-    box-shadow: #000000;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 450px;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px; /* Max width of the container */
+  justify-content: center;
+  align-items: center;
+  opacity: 0; /* Initial state for the appear animation */
+  transform: translateX(-100%); /* Initial state for the slideInFromLeft animation */
+  animation: appear 0.5s ease forwards 0.2s, slideInFromLeft 0.5s ease-out forwards;
+}
+
+@keyframes appear {
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+      transform: translateX(-100%);
+  }
+  100% {
+      transform: translateX(0);
+  }
 }
 
 a {
   text-decoration: none;
 }
 
-/* If you want to add some animation to make the form appear smoothly */
-.container {
-    opacity: 0;
-    transform: translateY(-50px);
-    animation: appear 0.5s ease forwards 0.2s;
-}
-
-@keyframes appear {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
 /* H1 AND P TAGS */
 h1, p {
@@ -105,20 +118,6 @@ h1, p {
   box-sizing: border-box;
 }
 
-html,
-body {
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-}
-
-body {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: black;
-}
 
 .glowing-btn {
     display: flex;
@@ -193,7 +192,12 @@ body {
 .glowing-btn:hover {
   color: rgba(0, 0, 0, 0.8);
   text-shadow: none;
-  animation: none;
+  animation: pulse 1s infinite;
+}
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
 }
 
 .glowing-btn:hover .glowing-txt {
