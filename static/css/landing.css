@@ -328,6 +328,7 @@ body {
     color: teal; /* Adjust to match your brand color */
     text-decoration: none; /* Removes underline from links */
     transition: color 0.3s ease-in-out;
+    padding: 15px;
 }
 
 .contact-details a:hover,
@@ -350,6 +351,99 @@ body {
 }
 
 /* Contact Us Section End */
+
+
+
+
+/* FAQ Section */
+.faq-section {
+    background-color: #fff;
+    padding: 2em 0;
+    text-align: center;
+    max-width: 800px;
+    margin: auto; /* This centers the section */
+}
+
+.faq-section h2 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 1em;
+}
+
+.faq-container {
+    width: 800px;
+    margin: auto;
+    text-align: left;
+}
+
+.faq-item {
+    background: #f4f4f4;
+    margin-bottom: 1em;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    overflow: hidden;
+    width: 800px;
+}
+
+.faq-title {
+    padding: 0.5em 1em;
+    background: teal;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s ease; /* Smooth background transition */
+}
+
+/* Added hover effect for the title */
+.faq-title:hover {
+    background-color: #35a79c;
+}
+
+.faq-content {
+    /* Set max-width here if your .faq-item has a set width to ensure it does not expand beyond it */
+    max-width: 800px; /* Adjust this to the width of your .faq-item if it's different */
+    margin: auto; /* This will center the content if .faq-content is smaller than the max-width */
+    padding: 0 1em;
+    background: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+    /* Add box-sizing property to include padding in the element's total width */
+    box-sizing: border-box;
+}
+
+.faq-content.open {
+    padding: 1em; /* Padding when open */
+    max-height: 1000px; /* Max height for visible content, adjust as needed */
+    visibility: visible; /* Make content visible */
+    opacity: 1; /* Fade in content */
+    max-width: 800px;
+}
+/* Responsive Design for FAQ Section */
+@media screen and (max-width: 768px) {
+    .faq-container {
+        width: 100%;
+        padding: 0 20px; /* Padding for smaller screens */
+    }
+
+    .faq-item {
+        /* Ensures the content is easily readable on smaller screens */
+        margin-bottom: 0.5em;
+    }
+
+    .faq-title {
+        /* Adjusts the padding for better touch targets on smaller screens */
+        padding: 0.75em 1em;
+    }
+
+    .faq-content {
+        /* Adjusts the padding for consistency on smaller screens */
+        padding: 0.5em 1em;
+    }
+}
+/* FAQ End */
+
+
 
 
 /* Footer */
