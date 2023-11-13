@@ -12,6 +12,26 @@ body {
     background-color: #f4f4f4;
 }
 
+/* Button Styling */
+.btn {
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50; /* Green color for the button */
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+    background-color: #45a049; /* Darker shade of green on hover */
+    transform: scale(1.05);
+}
+
 /* Navbar */
 .navbar {
     background-color: teal; /* Adjust to your brand color */
@@ -102,16 +122,6 @@ body {
 .hero p {
     font-size: 1.2em;
     margin-bottom: 1.5em;
-}
-
-.hero .btn {
-    background-color: #ff9900; /* Adjust to your brand color */
-    color: white;
-    padding: 1em 2em;
-    text-decoration: none;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
 }
 
 /* Features Section */
